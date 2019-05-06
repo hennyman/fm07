@@ -1,39 +1,39 @@
 Info memory segment - 484 bytes
 Numbering starts at 0.
 
-Root + decimal		Root + hex		New decimal		New hex			Description
+Decimal		Hex			Description
 
--224 - -223			-e0 - -df		12 - 13			c - d			Aptidao Fisica (?)
--222 - -221			-de - -dd		14 - 15			e - f			Cansaco no Jogo (?)
--220 - -219			-dc - -db		16 - 17			10 - 11			Cansaco (?)
--218 - -217			-da - -d9		18 - 19			12 - 13			Local reputation
--216 - -215			-d8 - -d7		20 - 21			14 - 15			Actual reputation
--214 - -213			-d6 - -d5		21 - 23			16 - 17			Global reputation
--212				-d4				24				18				Current ability
+22 - 13			c - d			Aptidao Fisica (?)
+14 - 15			e - f			Cansaco no Jogo (?)
+16 - 17			10 - 11			Cansaco (?)
+18 - 19			12 - 13			Local reputation
+20 - 21			14 - 15			Actual reputation
+21 - 23			16 - 17			Global reputation
+24				18				Current ability
 
--210				-d2				26				1a				Potential ability
+26				1a				Potential ability
 
--204				-cc				32				20				Peso (?)
+32				20				Peso (?)
 
--202				-ca				34				22				Altura (?)
+34				22				Altura (?)
 
--196 - -193			-c4 - -c1		40 - 43			28 - 2b			Value
--192 - -189			-c0 - -bd		44 - 47			2c - 2f			Valor Exigido (?)
+40 - 43			28 - 2b			Value
+44 - 47			2c - 2f			Valor Exigido (?)
 
--160				-a0				76				4c				Moral
+76				4c				Moral
 
--52 - -49			-34 - -31		184 - 187		b8 - bb			Memory address to attribute values
--48 - -43 (-41)		-30 - -2a (28)	188 - 194 (196)	bc - c2 (c4)	Prefered moves
+184 - 187		b8 - bb			Memory address to attribute values
+188 - 194 (196)	bc - c2 (c4)	Prefered moves
 
-0 - 3				0 - 3			236 - 239		ec - ef			UID
+236 - 239		ec - ef			UID
 
-52 - 54				34 - 36			288 - 300		120 - 122		D.O.B.
+288 - 300		120 - 122		D.O.B.
 
-64 - 67				40 - 43			300 - 303		12c - 12f		Nationality, unknown ecoding. Iceland = 40 e2 e6 07, Hungary = e8 de e5 07, Argentina = f0 84 e8 07
+300 - 303		12c - 12f		Nationality, unknown ecoding. Iceland = 40 e2 e6 07, Hungary = e8 de e5 07, Argentina = f0 84 e8 07
 
-72					48				308				134				International apperances
-73					49				309				135				Under 21 appearances
-74					4a				310				136				International goals
-75					4b				311				137				Under 21 goals
+308				134				International apperances
+309				135				Under 21 appearances
+310				136				International goals
+311				137				Under 21 goals
 
-228 - 236 (239)		e4 - ec (ef)	464 - 472 (475)	1d0 - 1d8 (1db)	Nickname reference, unknown how ref works
+464 - 472 (475)	1d0 - 1d8 (1db)	Nickname reference, unknown how ref works
