@@ -1,39 +1,148 @@
 Info memory segment - 484 bytes
 Numbering starts at 0.
 
-Decimal		Hex			Description
+Decimal			Hex				Description
 
-22 - 13			c - d			Aptidao Fisica (?)
-14 - 15			e - f			Cansaco no Jogo (?)
-16 - 17			10 - 11			Cansaco (?)
-18 - 19			12 - 13			Local reputation
-20 - 21			14 - 15			Actual reputation
-21 - 23			16 - 17			Global reputation
-24				18				Current ability
+8 - 9			8 - 9			Aptidao Fisica (?)
+10 - 11			a - b			Cansaco no Jogo (?)
+12 - 13			c - d			Cansaco (?)
+14 - 15			e - f			Local reputation
+16 - 17			10 - 11			Actual reputation
+18 - 19			12 - 13			Global reputation
+20				14				Current ability
 
-26				1a				Potential ability
+22				16				Potential ability
 
-32				20				Peso (?)
+28				1c				Peso (?)
 
-34				22				Altura (?)
+30				1e				Altura (?)
 
-40 - 43			28 - 2b			Value
-44 - 47			2c - 2f			Valor Exigido (?)
+36 - 39			24 - 27			Value
+40 - 43			28 - 2b			Valor Exigido (?)
 
-76				4c				Moral
+73				49				Moral
 
-184 - 187		b8 - bb			Memory address to attribute values
-188 - 194 (196)	bc - c2 (c4)	Prefered moves
+180 - 183		b4 - b7			Memory address to attribute
+184 - 190 (191)	b8 - be (bf)	Prefered moves
 
-236 - 239		ec - ef			UID
+232 - 235		e8 - eb			UID
 
-288 - 300		120 - 122		D.O.B.
+284 - 286		11c - 11e		D.O.B.
 
-300 - 303		12c - 12f		Nationality, unknown ecoding. Iceland = 40 e2 e6 07, Hungary = e8 de e5 07, Argentina = f0 84 e8 07
+296 - 299		128 - 12b		Memory address to nationality
 
-308				134				International apperances
-309				135				Under 21 appearances
-310				136				International goals
-311				137				Under 21 goals
+304				130				International apperances
+305				131				Under 21 appearances
+306				132				International goals
+307				133				Under 21 goals
 
-464 - 472 (475)	1d0 - 1d8 (1db)	Nickname reference, unknown how ref works
+328 - 332		148 - 14b		Memory address of club
+				
+420 - 423		1a4 - 1a7		Memory address to personality
+
+460 - 468 (471)	1cc - 1d4 (1d7)	Nickname reference, unknown how ref works
+
+
+
+Attribute memory segment - 108 bytes
+Numbering starts at 0.
+
+Decimal			Hex				Description
+
+				1c				Goalkeeper
+				1d				Sweeper
+				1e				Center-half
+				1f				Volante (?)
+				20				Midfield
+				21				Attacking Midfield
+				22				Forward
+				23				Wing
+				24				Free
+				25				Right Side
+				26				Left Side
+				27				Central
+				28				Defender Left
+				29				Defender Central
+				2a				Defender Right
+				2b				Defensive Midfielder Central
+				2c				Midfielder Left
+				2d				Midfielder Central
+				2e				Midfielder Right
+				2f				Attacking Midfielder Left
+				30				Attacking Midfielder Central
+				31				Attacking Midfielder Right
+				32				Striker
+				33				Wing Back Left
+				34				Wing Back Right
+				35				Crossing
+				36				Dribbling
+				37				Finishing
+				38				Heading
+				39				Long Shots
+				3a				Marking
+				3b				Off The Ball
+				3c				Passing
+				3d				Penalty Taking
+				3e				Tackling
+				3f				Creativity
+				40				Handling
+				41				Aerial Ability
+				42				Command Of Area
+				43				Communication
+				44				Kicking
+				45				Throwing
+				46				Anticipation
+				47				Decisions
+				48				One On Ones
+				49				Positioning
+				4a				Reflexes
+				4b				First Touch
+				4c				Technique
+				4d				Left Foot (Other)
+				4e				Right Foot (Other)
+				4f				Flair
+				50				Corners
+				51				Teamwork
+				52				Work Rate
+				53				Long Throws
+				54				Eccentricity
+				55				Rushing Out
+				56				Tendency To Punsh
+				57				Acceleration
+				58				Free Kicks
+				59				Strength
+				5a				Stamina
+				5b				Pace
+				5c				Jumping
+				5d				Influence
+				5e				Loyalty (Hidden)
+				5f				Balance
+				60				Bravery
+				61				Consistency (Hidden)
+				62				Aggresion
+				63				Agility
+				64				Big Occasions (Hidden)
+				65				Injury Prone (Hidden)
+				66				Versatility (Hidden)
+				67				Natural Fitness
+				68				Determination
+				69				Composure
+				6a				Concentration
+				6b				??? 01 for Laslo, 00 for others checked
+
+
+
+Personality memory segment - 36 bytes
+Numbering starts at 0.
+
+Decimal			Hex				Description
+
+				1c				Adaptability
+				1d				Ambition
+				1e				Loyalty (another?)
+				1f				Under Pressure
+				20				Profesionalism
+				21				Sportiness
+				22				Temperament
+				23				Controversy			
+				
