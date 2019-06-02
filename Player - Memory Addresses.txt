@@ -3,8 +3,8 @@ Numbering starts at 0.
 
 Decimal			Hex				Description
 
-8 - 9			8 - 9			Aptidao Fisica (?)
-10 - 11			a - b			Cansaco no Jogo (?)
+8 - 9			8 - 9			Condition related
+10 - 11			a - b			Condition related
 12 - 13			c - d			Cansaco (?)
 14 - 15			e - f			Local reputation
 16 - 17			10 - 11			Actual reputation
@@ -20,14 +20,17 @@ Decimal			Hex				Description
 36 - 39			24 - 27			Value
 40 - 43			28 - 2b			Valor Exigido (?)
 
-73				49				Moral
+73				48				Moral
 
 180 - 183		b4 - b7			Memory address to attribute
 184 - 190 (191)	b8 - be (bf)	Prefered moves
 
 232 - 235		e8 - eb			UID
 
-284 - 286		11c - 11e		D.O.B.
+160 - 163		100 - 103		Name segment, first name
+164 - 167		104 - 107		Name segment, second name
+
+284 - 287		11c - 11f		D.O.B.
 
 296 - 299		128 - 12b		Memory address to nationality
 
@@ -132,7 +135,7 @@ Decimal			Hex				Description
 
 
 
-Personality memory segment - 36 bytes
+Personality memory segment - 36 bytes (These are all hidden)
 Numbering starts at 0.
 
 Decimal			Hex				Description
@@ -144,5 +147,13 @@ Decimal			Hex				Description
 				20				Profesionalism
 				21				Sportiness
 				22				Temperament
-				23				Controversy			
-				
+				23				Controversy
+
+
+
+Names memory segment - 48 bytes
+Numbering starts at 0.
+
+Hex				Description
+
+24 - 27			Name address (link to link to ...)

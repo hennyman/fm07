@@ -1,0 +1,17 @@
+Info memory segment - 336 bytes
+Numbering starts at 0.
+
+Hex				Description
+
+14 - 17			Club uid
+38 - 3b			Club name first link
+6c - 6d			Reputation
+
+
+
+Names memory segment - ? bytes
+Numbering starts at 0.
+
+Hex				Description
+
+28 - 2b			Name address (link to link to ...)
