@@ -130,8 +130,8 @@ class player:
         self.club_uid = None
         self.date_of_birth = None # (years, days)
         self.age = None # (years, days)
-        self.is_interested = None
-        self.is_known = None
+        self.is_interested = False
+        self.is_known = False
         
         # International
         self.international_apps = None
@@ -658,3 +658,8 @@ class player:
         else:
             print("get_club_name_point_3: Access Denied!")
             return
+        
+    def to_string(self):
+        s = ""
+        s = s + self.first_name + " " + self.second_name
+        return s
