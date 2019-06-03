@@ -1,0 +1,30 @@
+
+$ \list or \l = lists all databases
+
+$ \dt = lists all tables in db
+
+$ \c <cb_name> = change to other db
+
+$ CREATE TABLE <table_name> (<column_name_1> int, <column_name_2> varchar(255));
+
+$ SELECT * FROM <table_name>;
+
+$ INSERT INTO <table_name> (<column_name_i>, <column_name_i>, ...) VALUES (<value_i>, <value_j>, ...);
+
+$ ALTER TABLE <table_name> DROP COLUMN <column_name>;
+
+$ ALTER TABLE <table_name> ADD COLUMN <column_name> BOOLEAN DEFAULT FALSE;
+
+$ DROP TABLE <table_name>;
+
+$ DELETE FROM <table_name> WHERE <column_name> = <value>;
+
+$ ALTER TABLE <table_name> ADD COLUMN <column_name> varchar(256);
+
+$ ALTER TABLE <table_name> ADD COLUMN <column_name> varchar(256) NOT NULL UNIQUE;
+
+$ UPDATE <table_name> SET <column_name>=lower(<column_name_2>);
+
+$ ALTER TABLE <table_name> ADD UNIQUE (<column_name>);
+
+$ ALTER TABLE <table_name> ALTER COLUMN <column_name> SET NOT NULL;

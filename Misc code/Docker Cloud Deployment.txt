@@ -1,0 +1,114 @@
+0. Make sure that you have a Google cloud platform (gcp) project where you want to deploy
+1. Create files required for building image
+2. Build image
+	2.1 $ docker build -t <image_name> .
+3. Enable "Container Registry" in your gcp project
+4. Download and install Google cloud sdk
+	4.1 Follow instructions to complete installation
+	4.2 Make sure to run $ gcloud init after installation has finished
+5. Move image to gcp cloud storage (container registry)
+	5.1 $ docker tag <image_id> eu.gcr.io/<cloud_project_name>/<cloud_repository_name>
+	5.2 $ gcloud docker -- push eu.gcr.io/<cloud_project_name>/<cloud_repository_name>
+6. Create VM (Compute Engine) instance in your gcp project
+	6.1 You need to specify features for the VM (like available memory). If you are unsure about certain features contact an expert.
+7. Deploy container in VM
+	7.1 Open an ssh connection to the VM. Can be done from the Compte Engine > VM instances view
+	7.2 > docker-credential-gcr configure-docker
+	7.3 > docker pull eu.gcr.io/<cloud_project_name>/<cloud_repository_name>
+	7.4 > docker run -p 80:80 eu.gcr.io/<cloud_project_name>/<cloud_repository_name>
+	OR (To add an envrionment variable named POSTGRES_USER)
+	7.4 > docker run -e "POSTGRES_USER=default_user" -p 80:80 eu.gcr.io/<cloud_project_name>/<cloud_repository_name>
+	7.5 Note default entry point is http:// not https://
+(8. Give your VM a static ip)
+	(8.1 VPC network > Exteral IP addresses)
+	(8.2 Change type of the VM to static)
+ 
+ 
+
+$ - Used to identify commands that should be run in local command window
+> - Used to identify commands that should be run gcp ssh command window
+
+
+
+This is the original (smallest VM) REST response from the Google Compute Engine service.
+
+{
+  "canIpForward": false,
+  "cpuPlatform": "Unknown CPU Platform",
+  "creationTimestamp": "2018-03-20T04:33:30.883-07:00",
+  "deletionProtection": false,
+  "description": "",
+  "disks": [
+    {
+      "autoDelete": true,
+      "boot": true,
+      "deviceName": "prod-dummy-buttler",
+      "index": 0,
+      "interface": "SCSI",
+      "kind": "compute#attachedDisk",
+      "licenses": [
+        "projects/cos-cloud/global/licenses/cos"
+      ],
+      "mode": "READ_WRITE",
+      "source": "projects/pertti-buttler/zones/europe-west1-d/disks/prod-dummy-buttler",
+      "type": "PERSISTENT"
+    }
+  ],
+  "id": "8381389914538594150",
+  "kind": "compute#instance",
+  "labelFingerprint": "42WmSpB8rSM=",
+  "machineType": "projects/pertti-buttler/zones/europe-west1-d/machineTypes/f1-micro",
+  "metadata": {
+    "fingerprint": "KP0-M3QJbkw=",
+    "kind": "compute#metadata"
+  },
+  "name": "prod-dummy-buttler",
+  "networkInterfaces": [
+    {
+      "accessConfigs": [
+        {
+          "kind": "compute#accessConfig",
+          "name": "External NAT",
+          "natIP": "35.187.188.50",
+          "networkTier": "PREMIUM",
+          "type": "ONE_TO_ONE_NAT"
+        }
+      ],
+      "fingerprint": "d1V9jVy_cFw=",
+      "kind": "compute#networkInterface",
+      "name": "nic0",
+      "network": "projects/pertti-buttler/global/networks/default",
+      "networkIP": "10.132.0.2",
+      "subnetwork": "projects/pertti-buttler/regions/europe-west1/subnetworks/default"
+    }
+  ],
+  "scheduling": {
+    "automaticRestart": true,
+    "onHostMaintenance": "MIGRATE",
+    "preemptible": false
+  },
+  "selfLink": "projects/pertti-buttler/zones/europe-west1-d/instances/prod-dummy-buttler",
+  "serviceAccounts": [
+    {
+      "email": "893424718930-compute@developer.gserviceaccount.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/devstorage.read_only",
+        "https://www.googleapis.com/auth/logging.write",
+        "https://www.googleapis.com/auth/monitoring.write",
+        "https://www.googleapis.com/auth/servicecontrol",
+        "https://www.googleapis.com/auth/service.management.readonly",
+        "https://www.googleapis.com/auth/trace.append"
+      ]
+    }
+  ],
+  "startRestricted": false,
+  "status": "TERMINATED",
+  "tags": {
+    "fingerprint": "6smc4R4d39I=",
+    "items": [
+      "http-server",
+      "https-server"
+    ]
+  },
+  "zone": "projects/pertti-buttler/zones/europe-west1-d"
+}

@@ -1,0 +1,1 @@
+curl -X POST http://pertti.silo.ai/predict -d  @"C:\Data\predict.json" --header "Content-Type: application/json"

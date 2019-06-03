@@ -1,0 +1,83 @@
+
+$ echo.><filename.ext> = Creates a new empty file named filename.ext
+
+$ docker images = List docker images
+
+$ docker image ls = List docker images
+
+$ docker image rm <image_id> = Remove specified image from this machine
+
+$ docker container ls = Lists running containers
+
+$ docker build -t <image_name> . = Create docker image and name it (folder needs to contain files required for docker image)
+
+$ docker run -p 4000:80 <image_name> = Run the image, mapping your machine’s port 4000 to the container’s published port 80 (result visible at localhost:4000)
+
+$ docker run -p 4000:80 <image_name> -e "deep=purple" = Same as the above using an environment variable deep with the value purple
+
+$ curl http://localhost:4000 = View localhost:4000 content in shell
+
+$ docker container stop <container_id> = Stop container on Windows
+
+$ docker run -d -p 4000:80 <image_name> = Run the image in the background, in detached mode
+
+$ docker exec -it <image_id> bash = Get inside the running container
+
+$ docker login = Log in to the Docker public registry on your local machine
+
+$ docker tag <image_name> <username>/<repository_name>:<tag> = Associate a local image with a repository and optional tag. The repository name is, in the guide I red, of the convention username/repo_name
+
+$ docker push <username>/<repository_name>:<tag> = Upload your tagged image to the repository in Docker public registry
+
+$ docker run -p 4000:80 <username>/<repository_name>:<tag> = Pull and run the image from the remote repository on any machine
+
+$ docker stack ls = List stacks or apps
+
+$ docker stack deploy -c <composefile> <appname> = Run the specified Compose file
+
+$ docker stack ps <appname> = List tasks associated with an app
+
+$ docker service ls = List running services associated with an app
+
+$ docker service ps <service> = List tasks associated with a service
+
+$ docker inspect <task or container> = Inspect task or container
+
+$ docker stack rm <appname> = Tear down an application
+
+$ docker swarm init = Create swarm manager
+
+$ docker swarm leave --force = Worker - take down a single node swarm from the manager, Manager - Make master leave, kill swarm
+
+$ docker swarm join = Join swarm as workers
+
+$ docker node ls = For swarm manager - view the nodes in swarm
+
+$ docker node inspect <node_id> = Inspect a node
+
+$ docker-machine ls = list VMs, asterisk shows which VM this shell is talking to
+
+$ docker-machine create -d hyperv --hyperv-virtual-switch "<virtual_switch_name>" <vm_name> = Create VM using the node management tool "docker-machine"
+
+$ docker-machine start <vm_name> = Start a VM that is currently not running
+
+$ docker-machine env <vm_name> = View basic information about your node + last line can be copied and ran to configure shell to talk to this VM (make VM the active VM).
+
+$ docker-machine env -u = Copy and run last line to "unset" active VM. 
+
+$ docker-machine stop <vm_name> = Stop running VM
+
+$ docker-machine rm <vm_name> = Delete VM and the disk images
+
+$ docker-machine rm <vm_name> --force = Force delete VM and the disk images
+
+$ docker-machine ssh <vm_name> = Open an SSH session with the VM; type "exit" to end
+
+$ docker-machine scp <file_name> <vm_name>:~ = Copy file to node's home dir (only required if you use ssh to connect to manager and deploy the app)
+
+$ docker-machine ssh <vm_name> "<command>" = Send command to your VM
+	- Example: $ docker-machine ssh <vm_name> "docker swarm init --advertise-addr <vm_ip>" = Instruct VM to become a swarm manager
+	- Example: $ docker-machine ssh <vm_name> "docker swarm join --token <token> <vm_manager_ip>:2377" = Instruct VM to join swarm
+	- Example: $ docker-machine ssh <vm_name> "docker swarm join-token -q worker" = View join token
+	- Example: $ docker-machine ssh <vm_name> "docker stack deploy -c <composefile> <appname>" = Deploy an app using ssh (you must have first copied the Compose file to VM)
+
