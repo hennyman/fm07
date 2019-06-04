@@ -21,6 +21,7 @@ PLAYER_CLASS_ID = 0x0133f1a80133ec44
 CURRENT_DATE = None # (year, days)
 
 PLAYERS = []
+CLUBS = {}
 
 KNOWN_PLAYERS_FILE_NAME = "known.slf"
 INTERESTED_PLAYERS_FILE_NAME = "interested.slf"
@@ -228,10 +229,21 @@ def load_players():
                 p.is_interested = False
 
     print("Number of player loaded: " + str(number_of_players) +"\n")
+    
+    def populate_clubs():
+        
+        global CLUBS
+        global PLAYERS
+        CLUBS = {}
+        
+        for p in PLAYERS:
+            if not p.club_uid in CLUBS:
+                CLUBS[p.club_uid] = p.club_name
 
-set_pid()
-set_players_start_address()
+#set_pid()
+#set_players_start_address()
 #load_players()
+#populate_clubs()
 
 print("###################################")
 print("Welcome to fm07 - Type exit to quit")
@@ -239,7 +251,7 @@ print("###################################")
 
 while True:
     
-    function = input("What function do you want to run? \n \n\
+    function = input("\n\nWhat function do you want to run? \n \n\
 The options are: \n\
 1 - Player search (default) \n\
 2 - One player \n\
@@ -250,8 +262,8 @@ The options are: \n\
     if function == "exit" or function == "Exit":
         break
     elif function == "2":
-        identifier = input("Enter player UID\n>")
-        if function == "exit" or function == "Exit":
+        identifier = input("Enter player name or UID\n>")
+        if identifier == "exit" or identifier == "Exit":
             break
         else:
             try:
@@ -262,10 +274,33 @@ The options are: \n\
                 else:
                     print("UID not found\n")
             except Exception as e:
-                print("Not a valid integer\n")
+                names = identifier.split(" ")
+                filtered_players = list(filter(lambda x: x.first_name == names[0] and x.second_name == names[1], PLAYERS))
+                for p in filtered_players:
+                    print(p.to_string() + "\n")
+                if len(filtered_players) == 0:
+                    print("No player by that name found\n")
     elif function == "3":
-        team_name = input("What is the name of your club \n>")
+        identifier = input("Enter club name or UID \n>")
+        if identifier == "exit" or identifier == "Exit":
+            break
+        else:
+            try:
+                club_uid = int(identifier)
+                filtered_players = list(filter(lambda x: x.club_uid == club_uid, PLAYERS))
+                for p in filtered_players:
+                    print(p.to_string() + "\n")
+                if len(filtered_players) == 0:
+                    print("No players found for club with that UID\n")
+            except Exception as e:
+                club_name = identifier.split(" ")
+                filtered_players = list(filter(lambda x: x.club_name == club_name, PLAYERS))
+                for p in filtered_players:
+                    print(p.to_string() + "\n")
+                if len(filtered_players) == 0:
+                    print("No players found for club with that name\n")
+        
     elif function == "4":
         load_players()
     else:
-        print("Player search")
+        print("Player search") # TODO
