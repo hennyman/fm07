@@ -1,6 +1,7 @@
 import numpy as np
 import psutil
 import sys
+import json
 
 from ctypes import *
 from ctypes.wintypes import *
@@ -23,8 +24,10 @@ CURRENT_DATE = None # (year, days)
 PLAYERS = []
 CLUBS = {}
 
-KNOWN_PLAYERS_FILE_NAME = "known.slf"
-INTERESTED_PLAYERS_FILE_NAME = "interested.slf"
+KNOWN_PLAYERS_FILE_NAME = "./shortlists/known.slf"
+INTERESTED_PLAYERS_FILE_NAME = "./shortlists/interested.slf"
+
+PLAYER_SEARCH_JSONS_PATH = "./player_search_jsons/"
 
 k32 = WinDLL('kernel32')
 k32.OpenProcess.argtypes = DWORD,BOOL,DWORD
@@ -42,6 +45,8 @@ def set_pid():
 def set_current_date():
     
     global CURRENT_DATE
+    global PROCESS_VM_READ
+    global PROCESS_ID
     
     process = k32.OpenProcess(PROCESS_VM_READ, False, PROCESS_ID)
     buf = create_string_buffer(4)
@@ -230,20 +235,57 @@ def load_players():
 
     print("Number of player loaded: " + str(number_of_players) +"\n")
     
-    def populate_clubs():
+def populate_clubs():
         
-        global CLUBS
-        global PLAYERS
-        CLUBS = {}
+    global CLUBS
+    global PLAYERS
+    CLUBS = {}
         
-        for p in PLAYERS:
-            if not p.club_uid in CLUBS:
-                CLUBS[p.club_uid] = p.club_name
+    for p in PLAYERS:
+        if not p.club_uid in CLUBS:
+            CLUBS[p.club_uid] = p.club_name
+            
+def player_search(json_data):
+    
+    filters = json_data["filter"]
+    filter_keys = filters.keys()
+    
+    filtered_players = PLAYERS
+    
+    filtered_players = list(filter(lambda x: x.is_known, filtered_players))
+    
+    if "age" in filter_keys:
+        age_dict = filters["age"]
+        if "max" in age_dict.keys():
+            filtered_players = list(filter(lambda x: x.age[0] <= age_dict["max"], filtered_players))
+        if "min" in age_dict.keys():
+            filtered_players = list(filter(lambda x: x.age[0] >= age_dict["min"], filtered_players))
+            
+    if "positions" in filter_keys:
+        positions = filters["positions"]
+        if not "all" in positions:
+            if "all_outfield" in positions:
+                filtered_players = list(filter(lambda x: not "goalkeeper" in x.positions, filtered_players))
+            elif "goalkeeper" in positions:
+                filtered_players = list(filter(lambda x: "goalkeeper" in x.positions, filtered_players))
+    
+    if "interested" in filter_keys:
+        interested = filters["interested"]
+        filtered_players = list(filter(lambda x: x.is_interested == interested, filtered_players))
+    
+    if json_data["sort_by"] == "total":
+        filtered_players.sort(key=lambda x: x.total, reverse = True)
+    
+    max_return = json_data["max_return"]
+    if not max_return == -1:
+        filtered_players = filtered_players[0 : max_return]
+    
+    return filtered_players
 
-#set_pid()
-#set_players_start_address()
-#load_players()
-#populate_clubs()
+set_pid()
+set_players_start_address()
+load_players()
+populate_clubs()
 
 print("###################################")
 print("Welcome to fm07 - Type exit to quit")
@@ -253,16 +295,16 @@ while True:
     
     function = input("\n\nWhat function do you want to run? \n \n\
 The options are: \n\
-1 - Player search (default) \n\
-2 - One player \n\
-3 - Club player list \n\
-4 - Reload players \n\
->")
+1 - One player \n\
+2 - Club player list \n\
+3 - Reload players \n\
+4 - Player search (default) \n\
+> ")
     
     if function == "exit" or function == "Exit":
         break
-    elif function == "2":
-        identifier = input("Enter player name or UID\n>")
+    elif function == "1":
+        identifier = input("Enter player name or UID\n> ")
         if identifier == "exit" or identifier == "Exit":
             break
         else:
@@ -280,8 +322,8 @@ The options are: \n\
                     print(p.to_string() + "\n")
                 if len(filtered_players) == 0:
                     print("No player by that name found\n")
-    elif function == "3":
-        identifier = input("Enter club name or UID \n>")
+    elif function == "2":
+        identifier = input("Enter club name or UID \n> ")
         if identifier == "exit" or identifier == "Exit":
             break
         else:
@@ -293,14 +335,23 @@ The options are: \n\
                 if len(filtered_players) == 0:
                     print("No players found for club with that UID\n")
             except Exception as e:
-                club_name = identifier.split(" ")
+                club_name = identifier
                 filtered_players = list(filter(lambda x: x.club_name == club_name, PLAYERS))
                 for p in filtered_players:
                     print(p.to_string() + "\n")
                 if len(filtered_players) == 0:
                     print("No players found for club with that name\n")
         
-    elif function == "4":
+    elif function == "3":
         load_players()
     else:
-        print("Player search") # TODO
+        file_name = input("Enter file name of json defining search \n> ")
+        if file_name == "exit" or file_name == "Exit":
+            break
+        path_file_name = PLAYER_SEARCH_JSONS_PATH + file_name
+        with open(path_file_name) as json_file:  
+            json_data = json.load(json_file)
+            
+        filtered_players = player_search(json_data)
+        for p in filtered_players:
+            print(p.to_string() + "\n")

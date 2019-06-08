@@ -1,0 +1,26 @@
+{
+	"filter": {
+		"min_age": 16,
+		"max_age": 32,
+		"min_total": 200,
+		"max_total": 500,
+		"goalkeeper_min_total": 100,
+		"goalkeeper_max_total": 200,
+		"full_back_min_total": 100,
+		"full_back_max_total": 200,
+		"central_defender_min_total": 100,
+		"central_defender_max_total": 200,
+		"defensive_midfielder_min_total": 100,
+		"defensive_midfielder_max_total": 200,
+		"winger_min_total": 100,
+		"winger_max_total": 200,
+		"attacking_midfielder_min_total": 100,
+		"attacking_midfielder_max_total": 200,
+		"striker_min_total": 100,
+		"striker_max_total": 200,
+		"positions": ["all", "all_outfield", "goalkeeper", "sweeper", "full_back_left", "full_back_right", "defender_central", "wing_back_left", "wing_back_right", "defensive_midfielder", "midfielder_left", "midfielder_right", "midfielder_central", "attacking_midfielder_left", "attacking_midfielder_right", "attacking_midfielder_central", "striker"],
+		"interested": true
+	},
+	"sort": "total",
+	"max_return": 20
+}
