@@ -720,8 +720,18 @@ class player:
         
     def to_string(self):
         s = ""
-        s = s + self.first_name + " " + self.second_name + "    (" + str(self.uid) + ")    " + self.list_to_string(self.positions)  + "    " + self.club_name + "\n"
-        s = s + str(self.total) + " " + str(self.goalkeeper_total) + " " + str(self.full_back_total) + " " + str(self.defender_central_total) + " " + str(self.defensive_midfielder_total) + " " + str(self.winger_total) + " " + str(self.attacking_midfielder_total) + " " + str(self.striker_total) + "\n"
+        s = s + self.first_name + " " + self.second_name + " (" + str(self.uid) + ")    "
+        s = s + str(self.age[0]) + " years " + str(self.age[1]) + " days    "
+        s = s + self.list_to_string(self.positions)  + "    " + self.club_name + "\n"
+        s = s + str(self.total) + " " + str(self.goalkeeper_total) + " " + str(self.full_back_total) + " " + str(self.defender_central_total) + " " + str(self.defensive_midfielder_total) + " " + str(self.winger_total) + " " + str(self.attacking_midfielder_total) + " " + str(self.striker_total)
+        return s
+    
+    def to_csv(self):
+        s = ""
+        s = s + self.first_name + " " + self.second_name + ";" + str(self.uid) + ";"
+        s = s + str(self.age[0]) + ";" + str(self.age[1]) + ";"
+        s = s + self.list_to_string(self.positions)  + ";" + self.club_name + ";"
+        s = s + str(self.total) + ";" + str(self.goalkeeper_total) + ";" + str(self.full_back_total) + ";" + str(self.defender_central_total) + ";" + str(self.defensive_midfielder_total) + ";" + str(self.winger_total) + ";" + str(self.attacking_midfielder_total) + ";" + str(self.striker_total)
         return s
     
     def list_to_string(self, lis):

@@ -7,6 +7,7 @@ from ctypes import *
 from ctypes.wintypes import *
 
 from util.player import player
+from util.eleven import eleven
 
 NAME_OF_PROCESS = "fm.exe"
 PROCESS_ID = None
@@ -162,11 +163,16 @@ def load_players():
     for p in PLAYERS:
         p.set_age(CURRENT_DATE)
         
-    known_players_uid = []
+    player_uid_list = []
+    for p in PLAYERS:
+        player_uid_list.append(p.uid)
+        
+    
     interested_players_uid = []
+    
+    
+    
     hexdata_known = None
-    hexdata_interested = None
-
     # Not full-proof as file may be deleted between check and open
     try:
         with open(KNOWN_PLAYERS_FILE_NAME, 'rb') as f:
@@ -175,24 +181,38 @@ def load_players():
         print("File " + KNOWN_PLAYERS_FILE_NAME + " does not exist \n")
 
     if hexdata_known is not None:
-    
+        
+        offset = 0
         l = len(hexdata_known)
-        end = l - 2
-        start = end - 8
-    
+        
         while True:
-        
-            hex_string = hexdata_known[start:end]
-            if hex_string[4:8] == '0000':
+            
+            known_players_uid = []
+            
+            if offset >= 8:
                 break
-            hex_string_reversed = reverse_hex_string(hex_string)
-            known_players_uid.append(int(hex_string_reversed, 16))
+            
+            end = l - offset
+            start = end - 8
+    
+            while True:
+                hex_string = hexdata_known[start:end]
+                hex_string_reversed = reverse_hex_string(hex_string)
+                known_players_uid.append(int(hex_string_reversed, 16))
         
-            start -= 8
-            end -= 8
+                start -= 8
+                end -= 8
         
-            if start < 0:
+                if start < 0:
+                    break
+                
+            intersect = list(set(player_uid_list) & set(known_players_uid))
+            len_intersect = len(intersect)
+            
+            if len_intersect > (len(known_players_uid) / 2):
                 break
+            else:
+                offset += 2
             
         for p in PLAYERS:
             if p.uid in known_players_uid:
@@ -200,6 +220,7 @@ def load_players():
             else:
                 p.is_known = False
 
+    hexdata_interested = None
     # Not full-proof as file may be deleted between check and open
     try:
         with open(INTERESTED_PLAYERS_FILE_NAME, 'rb') as f:
@@ -209,24 +230,38 @@ def load_players():
 
     if hexdata_interested is not None:
     
+        offset = 0
         l = len(hexdata_interested)
-        end = l - 2
-        start = end - 8
-    
+        
         while True:
-        
-            hex_string = hexdata_interested[start:end]
-            if hex_string[4:8] == '0000':
-                break
-            hex_string_reversed = reverse_hex_string(hex_string)
-            interested_players_uid.append(int(hex_string_reversed, 16))
-        
-            start -= 8
-            end -= 8
-        
-            if start < 0:
+            
+            interested_players_uid = []
+            
+            if offset >= 8:
                 break
             
+            end = l - offset
+            start = end - 8
+            
+            while True:
+                hex_string = hexdata_interested[start:end]
+                hex_string_reversed = reverse_hex_string(hex_string)
+                interested_players_uid.append(int(hex_string_reversed, 16))
+        
+                start -= 8
+                end -= 8
+        
+                if start < 0:
+                    break
+            
+            intersect = list(set(player_uid_list) & set(interested_players_uid))
+            len_intersect = len(intersect)
+            
+            if len_intersect > (len(interested_players_uid) / 2):
+                break
+            else:
+                offset += 2
+    
         for p in PLAYERS:
             if p.uid in interested_players_uid:
                 p.is_interested = True
@@ -266,12 +301,19 @@ def player_search(json_data):
         if not "all" in positions:
             if "all_outfield" in positions:
                 filtered_players = list(filter(lambda x: not "goalkeeper" in x.positions, filtered_players))
-            elif "goalkeeper" in positions:
-                filtered_players = list(filter(lambda x: "goalkeeper" in x.positions, filtered_players))
+            else:
+                filtered_players = list(filter(lambda x: len(list(set(positions) & set(x.positions))) > 0, filtered_players))
     
     if "interested" in filter_keys:
         interested = filters["interested"]
         filtered_players = list(filter(lambda x: x.is_interested == interested, filtered_players))
+        
+    if "free" in filter_keys:
+        free = filters["free"]
+        if free:
+            filtered_players = list(filter(lambda x: x.club_uid == -1, filtered_players))
+        else:
+            filtered_players = list(filter(lambda x: not x.club_uid == -1, filtered_players))
     
     if json_data["sort_by"] == "total":
         filtered_players.sort(key=lambda x: x.total, reverse = True)
@@ -296,9 +338,11 @@ while True:
     function = input("\n\nWhat function do you want to run? \n \n\
 The options are: \n\
 1 - One player \n\
-2 - Club player list \n\
-3 - Reload players \n\
-4 - Player search (default) \n\
+2 - Club squad \n\
+3 - Club squad - one position \n\
+4 - Club squad - eleven \n\
+5 - Reload players \n\
+6 - Player search (default) \n\
 > ")
     
     if function == "exit" or function == "Exit":
@@ -341,17 +385,82 @@ The options are: \n\
                     print(p.to_string() + "\n")
                 if len(filtered_players) == 0:
                     print("No players found for club with that name\n")
-        
     elif function == "3":
+        identifier = input("Enter club name or UID \n> ")
+        if identifier == "exit" or identifier == "Exit":
+            break
+        else:
+            position = input("Enter position \n> ")
+            if position == "exit" or position == "Exit":
+                break
+            try:
+                club_uid = int(identifier)
+                filtered_players = list(filter(lambda x: x.club_uid == club_uid, PLAYERS))
+                filtered_players = list(filter(lambda x: position in x.positions, filtered_players))
+                for p in filtered_players:
+                    print(p.to_string() + "\n")
+                if len(filtered_players) == 0:
+                    print("No players found\n")
+            except Exception as e:
+                club_name = identifier
+                filtered_players = list(filter(lambda x: x.club_name == club_name, PLAYERS))
+                filtered_players = list(filter(lambda x: position in x.positions, filtered_players))
+                for p in filtered_players:
+                    print(p.to_string() + "\n")
+                if len(filtered_players) == 0:
+                    print("No players found\n")
+    elif function == "4":
+        identifier = input("Enter club name or UID \n> ")
+        if identifier == "exit" or identifier == "Exit":
+            break
+        else:
+            try:
+                club_uid = int(identifier)
+                if len(filtered_players) == 0:
+                    print("No players found for club with that UID\n")
+                else:
+                    eleven = eleven()
+                    eleven.set_players(filtered_players)
+                    eleven.get_eleven()
+            except Exception as e:
+                club_name = identifier
+                filtered_players = list(filter(lambda x: x.club_name == club_name, PLAYERS))
+                if len(filtered_players) == 0:
+                    print("No players found for club with that name\n")
+                else:
+                    eleven = eleven()
+                    eleven.set_players(filtered_players)
+                    eleven.get_eleven()
+    elif function == "5":
         load_players()
     else:
         file_name = input("Enter file name of json defining search \n> ")
         if file_name == "exit" or file_name == "Exit":
             break
         path_file_name = PLAYER_SEARCH_JSONS_PATH + file_name
-        with open(path_file_name) as json_file:  
-            json_data = json.load(json_file)
+        try: 
+            with open(path_file_name) as json_file:  
+                json_data = json.load(json_file)
             
-        filtered_players = player_search(json_data)
-        for p in filtered_players:
-            print(p.to_string() + "\n")
+            filtered_players = player_search(json_data)
+            for p in filtered_players:
+                print(p.to_string() + "\n")
+            
+            save_to_file = input("Do you want to save results to csv?\n> ")
+            if save_to_file == "exit" or save_to_file == "Exit":
+                break
+            elif save_to_file == "y" or save_to_file == "Y":
+                save_file_name = input("Enter file name\n> ")
+                if save_file_name == "exit" or save_to_file == "Exit":
+                    break
+            
+                output = ""
+                for p in filtered_players:
+                    output = output + p.to_csv() + "\n"
+            
+                file = open(save_file_name,'w') 
+                file.write(output) 
+                file.close()
+                
+        except Exception as e:
+            print(e)

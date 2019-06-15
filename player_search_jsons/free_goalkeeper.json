@@ -1,0 +1,12 @@
+{
+	"filter": {
+		"age": {
+            "max": 32
+        },
+		"positions": ["goalkeeper"],
+		"interested": true,
+        "free": true
+	},
+	"sort_by": "total",
+	"max_return": 20
+}
