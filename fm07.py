@@ -1,13 +1,11 @@
-import numpy as np
 import psutil
-import sys
 import json
 
 from ctypes import *
 from ctypes.wintypes import *
 
 from util.player import player
-from util.eleven import eleven
+from util.eleven import Eleven
 
 NAME_OF_PROCESS = "fm.exe"
 PROCESS_ID = None
@@ -30,19 +28,26 @@ INTERESTED_PLAYERS_FILE_NAME = "./shortlists/interested.slf"
 
 PLAYER_SEARCH_JSONS_PATH = "./player_search_jsons/"
 
+POSITIONS = ["GK", "DL", "DR", "DC", "DC", "DM", "ML", "MR", "AM", "ST", "ST"]
+
 k32 = WinDLL('kernel32')
 k32.OpenProcess.argtypes = DWORD,BOOL,DWORD
 k32.OpenProcess.restype = HANDLE
 k32.ReadProcessMemory.argtypes = HANDLE,LPVOID,LPVOID,c_size_t,POINTER(c_size_t)
 k32.ReadProcessMemory.restype = BOOL
 
+
 def set_pid():
+    global NAME_OF_PROCESS
     global PROCESS_ID
     for proc in psutil.process_iter():
         if proc.name() == NAME_OF_PROCESS:
             PROCESS_ID = proc.pid
             break
-        
+    if PROCESS_ID is None:
+        print(NAME_OF_PROCESS + " not found!")
+
+
 def set_current_date():
     
     global CURRENT_DATE
@@ -62,11 +67,12 @@ def set_current_date():
         CURRENT_DATE = (year, days)
     else:
         print("set_current_date: Access Denied! \n")
-        
+
+
 def set_players_start_address():
     
     global PLAYERS_START_ADDRESS
-    
+
     process = k32.OpenProcess(PROCESS_VM_READ, False, PROCESS_ID)
     buf = create_string_buffer(4)
     s = c_size_t()
@@ -79,6 +85,7 @@ def set_players_start_address():
     else:
         print("set_players_start_address: Access Denied! \n")
 
+
 def reverse_array(array):
     length = len(array)
     left = 0
@@ -90,7 +97,7 @@ def reverse_array(array):
         left = left + 1
         right = right - 1
 
-        
+
 def reverse_hex_string(st):
     length = len(st)
     st = list(st)
@@ -103,7 +110,8 @@ def reverse_hex_string(st):
         left = left + 2
         right = right - 2
     return "".join(st)
-    
+
+
 def decode_player_class_id(addr):
     
     process = k32.OpenProcess(PROCESS_VM_READ, False, PROCESS_ID)
@@ -117,6 +125,7 @@ def decode_player_class_id(addr):
     else:
         print("decode_player_class_id: Access Denied! \n")
         return -1
+
 
 def load_players():
     
@@ -166,12 +175,7 @@ def load_players():
     player_uid_list = []
     for p in PLAYERS:
         player_uid_list.append(p.uid)
-        
-    
-    interested_players_uid = []
-    
-    
-    
+
     hexdata_known = None
     # Not full-proof as file may be deleted between check and open
     try:
@@ -269,7 +273,8 @@ def load_players():
                 p.is_interested = False
 
     print("Number of player loaded: " + str(number_of_players) +"\n")
-    
+
+
 def populate_clubs():
         
     global CLUBS
@@ -279,7 +284,8 @@ def populate_clubs():
     for p in PLAYERS:
         if not p.club_uid in CLUBS:
             CLUBS[p.club_uid] = p.club_name
-            
+
+
 def player_search(json_data):
     
     filters = json_data["filter"]
@@ -324,6 +330,78 @@ def player_search(json_data):
     
     return filtered_players
 
+
+# noinspection PyBroadException
+def set_config(c_name=None):
+    if c_name is None:
+        return
+    j_data = None
+    f_name = "config.json"
+    try:
+        with open(f_name, 'r') as j_file:
+            j_data = json.load(j_file)
+    except Exception:
+        print("File config.json could not be loaded.")
+    if j_data is None:
+        return
+    j_data["club_name"] = c_name
+    try:
+        with open(f_name, 'w') as j_file:
+            json.dump(j_data, j_file)
+    except Exception:
+        print("File config.json could not be saved.")
+
+
+# noinspection PyBroadException
+def get_config_club():
+    f_name = "config.json"
+    try:
+        with open(f_name) as j_file:
+            j_data = json.load(j_file)
+            c_name = j_data["club_name"]
+            if c_name is not None:
+                return c_name
+            else:
+                return "-"
+    except Exception:
+        print("File config.json could not be loaded")
+        return "-"
+
+
+def print_players(players):
+    for p in players:
+        print(p.to_string() + "\n")
+    if len(players) == 0:
+        print("No players found!\n")
+
+
+def save_eleven_to_file(elevens):
+    global POSITIONS
+    print("")
+    s_to_file = input("Do you want to save results to csv?\n> ")
+    if s_to_file == "y" or save_to_file == "Y" or save_to_file == "yes" or save_to_file == "Yes":
+        s_file_name = input("Enter file name\n> ")
+        el1 = elevens[0]
+        el2 = elevens[1]
+        o = ""
+        c = 0
+        for p in el1:
+            o = o + POSITIONS[c] + ";" + p.to_eleven_csv(c) + "\n"
+            c += 1
+        o = o + "\n\n\n"
+        c = 0
+        for p in el2:
+            o = o + POSITIONS[c] + ";" + p.to_eleven_csv(c) + "\n"
+            c += 1
+        try:
+            f = open(s_file_name, 'w', encoding='utf8')
+            f.write(o)
+        except Exception:
+            print("File could not be saved.")
+        finally:
+            f.close()
+
+
 set_pid()
 set_players_start_address()
 load_players()
@@ -367,28 +445,38 @@ The options are: \n\
                 if len(filtered_players) == 0:
                     print("No player by that name found\n")
     elif function == "2":
-        identifier = input("Enter club name or UID \n> ")
+        club_name = get_config_club()
+        identifier = input("Enter club name or UID " + "(default: " + club_name + ")" + "\n> ")
         if identifier == "exit" or identifier == "Exit":
             break
+        elif identifier == "":
+            filtered_players = list(filter(lambda x: x.club_name == club_name or x.club_name_long == club_name, PLAYERS))
+            print_players(filtered_players)
         else:
             try:
                 club_uid = int(identifier)
                 filtered_players = list(filter(lambda x: x.club_uid == club_uid, PLAYERS))
-                for p in filtered_players:
-                    print(p.to_string() + "\n")
-                if len(filtered_players) == 0:
-                    print("No players found for club with that UID\n")
+                if len(filtered_players) > 0:
+                    set_config(c_name = filtered_players[0].club_name)
+                print_players(filtered_players)
             except Exception as e:
                 club_name = identifier
-                filtered_players = list(filter(lambda x: x.club_name == club_name, PLAYERS))
-                for p in filtered_players:
-                    print(p.to_string() + "\n")
-                if len(filtered_players) == 0:
-                    print("No players found for club with that name\n")
+                filtered_players = list(filter(lambda x: x.club_name == club_name or x.club_name_long == club_name, PLAYERS))
+                if len(filtered_players) > 0:
+                    set_config(c_name = filtered_players[0].club_name)
+                print_players(filtered_players)
     elif function == "3":
-        identifier = input("Enter club name or UID \n> ")
+        club_name = get_config_club()
+        identifier = input("Enter club name or UID " + "(default: " + club_name + ")" + "\n> ")
         if identifier == "exit" or identifier == "Exit":
             break
+        elif identifier == "":
+            position = input("Enter position \n> ")
+            if position == "exit" or position == "Exit":
+                break
+            filtered_players = list(filter(lambda x: x.club_name == club_name or x.club_name_long == club_name, PLAYERS))
+            filtered_players = list(filter(lambda x: position in x.positions, filtered_players))
+            print_players(filtered_players)
         else:
             position = input("Enter position \n> ")
             if position == "exit" or position == "Exit":
@@ -397,40 +485,53 @@ The options are: \n\
                 club_uid = int(identifier)
                 filtered_players = list(filter(lambda x: x.club_uid == club_uid, PLAYERS))
                 filtered_players = list(filter(lambda x: position in x.positions, filtered_players))
-                for p in filtered_players:
-                    print(p.to_string() + "\n")
-                if len(filtered_players) == 0:
-                    print("No players found\n")
+                if len(filtered_players) > 0:
+                    set_config(c_name = filtered_players[0].club_name)
+                print_players(filtered_players)
             except Exception as e:
                 club_name = identifier
-                filtered_players = list(filter(lambda x: x.club_name == club_name, PLAYERS))
+                filtered_players = list(filter(lambda x: x.club_name == club_name or x.club_name_long == club_name, PLAYERS))
                 filtered_players = list(filter(lambda x: position in x.positions, filtered_players))
-                for p in filtered_players:
-                    print(p.to_string() + "\n")
-                if len(filtered_players) == 0:
-                    print("No players found\n")
+                if len(filtered_players) > 0:
+                    set_config(c_name = filtered_players[0].club_name)
+                print_players(filtered_players)
     elif function == "4":
-        identifier = input("Enter club name or UID \n> ")
+        club_name = get_config_club()
+        identifier = input("Enter club name or UID " + "(default: " + club_name + ")" + "\n> ")
         if identifier == "exit" or identifier == "Exit":
             break
+        elif identifier == "":
+            filtered_players = list(filter(lambda x: x.club_name == club_name or x.club_name_long == club_name, PLAYERS))
+            if len(filtered_players) == 0:
+                print("No players found!\n")
+            else:
+                el = Eleven()
+                el.set_players(filtered_players)
+                els = el.get_eleven()
+                save_eleven_to_file(els)
         else:
             try:
                 club_uid = int(identifier)
+                filtered_players = list(filter(lambda x: x.club_uid == club_uid, PLAYERS))
                 if len(filtered_players) == 0:
                     print("No players found for club with that UID\n")
                 else:
-                    eleven = eleven()
-                    eleven.set_players(filtered_players)
-                    eleven.get_eleven()
+                    set_config(c_name=filtered_players[0].club_name)
+                    el = Eleven()
+                    el.set_players(filtered_players)
+                    els = el.get_eleven()
+                    save_eleven_to_file(els)
             except Exception as e:
                 club_name = identifier
-                filtered_players = list(filter(lambda x: x.club_name == club_name, PLAYERS))
+                filtered_players = list(filter(lambda x: x.club_name == club_name or x.club_name_long == club_name, PLAYERS))
                 if len(filtered_players) == 0:
                     print("No players found for club with that name\n")
                 else:
-                    eleven = eleven()
-                    eleven.set_players(filtered_players)
-                    eleven.get_eleven()
+                    set_config(c_name=filtered_players[0].club_name)
+                    el = Eleven()
+                    el.set_players(filtered_players)
+                    els = el.get_eleven()
+                    save_eleven_to_file(els)
     elif function == "5":
         load_players()
     else:
@@ -443,8 +544,7 @@ The options are: \n\
                 json_data = json.load(json_file)
             
             filtered_players = player_search(json_data)
-            for p in filtered_players:
-                print(p.to_string() + "\n")
+            print_players(filtered_players)
             
             save_to_file = input("Do you want to save results to csv?\n> ")
             if save_to_file == "exit" or save_to_file == "Exit":

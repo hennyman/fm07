@@ -127,6 +127,7 @@ class player:
         self.second_name = None
         self.uid = None
         self.club_name = None
+        self.club_name_long = None
         self.club_uid = None
         self.date_of_birth = None # (years, days)
         self.age = None # (years, days)
@@ -236,6 +237,17 @@ class player:
         self.winger_total = None
         self.attacking_midfielder_total = None
         self.striker_total = None
+        self.totals = []
+        self.position_totals = []
+
+        self.goalkeeper_compare = None
+        self.full_back_compare = None
+        self.defender_central_compare = None
+        self.defensive_midfielder_compare = None
+        self.winger_compare = None
+        self.attacking_midfielder_compare = None
+        self.striker_compare = None
+        self.compares = []
         
         self.generate_converter()
     
@@ -386,9 +398,17 @@ class player:
     def calculate_totals(self):
         if self.goalkeeper >=15:
             
-            self.total = self.aerial_ability + self.command_of_area + self.communication + self.eccentricity + self.handling + self.kicking + self.one_on_ones + self.reflexes + self.rushing_out + self.tendency_to_punch + self.throwing + self.aggression + self.anticipation + self.bravery + self.composure + self.concentration + self.creativity + self.decisions + self.determination + self.flair + self.influence + self.off_the_ball + self.positioning + self.teamwork + self.work_rate + self.acceleration + self.agility + self.balance + self.jumping + self.natural_fitness + self.pace + self.stamina + self.strength
+            self.total = self.aerial_ability + self.command_of_area + self.communication + self.eccentricity +\
+                         self.handling + self.kicking + self.one_on_ones + self.reflexes + self.rushing_out +\
+                         self.tendency_to_punch + self.throwing + self.aggression + self.anticipation + self.bravery +\
+                         self.composure + self.concentration + self.creativity + self.decisions + self.determination +\
+                         self.flair + self.influence + self.off_the_ball + self.positioning + self.teamwork +\
+                         self.work_rate + self.acceleration + self.agility + self.balance + self.jumping +\
+                         self.natural_fitness + self.pace + self.stamina + self.strength
             
-            self.goalkeeper_total = self.aerial_ability + self.communication + self.handling + self.kicking + self.one_on_ones + self.reflexes + self.throwing + self.concentration + self.decisions + self.positioning
+            self.goalkeeper_total = self.aerial_ability + self.communication + self.handling + self.kicking +\
+                                    self.one_on_ones + self.reflexes + self.throwing + self.concentration +\
+                                    self.decisions + self.positioning
             
             self.full_back_total = 0
             self.defender_central_total = 0
@@ -399,21 +419,55 @@ class player:
             
         else:
             
-            self.total = self.corners + self.crossing + self.dribbling + self.finishing + self.first_touch + self.free_kicks + self.heading + self.long_shots + self.long_throws + self.marking + self.passing + self.penalty_taking + self.tackling + self.technique + self.aggression + self.anticipation + self.bravery + self.composure + self.concentration + self.creativity + self.decisions + self.determination + self.flair + self.influence + self.off_the_ball + self.positioning + self.teamwork + self.work_rate + self.acceleration + self.agility + self.balance + self.jumping + self.natural_fitness + self.pace + self.stamina + self.strength
+            self.total = self.corners + self.crossing + self.dribbling + self.finishing + self.first_touch +\
+                         self.free_kicks + self.heading + self.long_shots + self.long_throws + self.marking +\
+                         self.passing + self.penalty_taking + self.tackling + self.technique + self.aggression +\
+                         self.anticipation + self.bravery + self.composure + self.concentration + self.creativity +\
+                         self.decisions + self.determination + self.flair + self.influence + self.off_the_ball +\
+                         self.positioning + self.teamwork + self.work_rate + self.acceleration + self.agility +\
+                         self.balance + self.jumping + self.natural_fitness + self.pace + self.stamina + self.strength
             
             self.goalkeeper_total = 0
             
-            self.full_back_total = self.acceleration + self.anticipation + self.concentration + self.crossing + self.decisions + self.marking + self.pace + self.passing + self.positioning + self.tackling
+            self.full_back_total = self.acceleration + self.anticipation + self.concentration + self.crossing +\
+                                   self.decisions + self.marking + self.pace + self.passing + self.positioning +\
+                                   self.tackling
             
-            self.defender_central_total = self.anticipation + self.bravery + self.concentration + self.decisions + self.heading + self.marking + self.pace + self.positioning + self.strength + self.tackling
+            self.defender_central_total = self.anticipation + self.bravery + self.concentration + self.decisions +\
+                                          self.heading + self.marking + self.pace + self.positioning + self.strength\
+                                          + self.tackling
         
-            self.defensive_midfielder_total = self.concentration + self.creativity + self.decisions + self.first_touch + self.marking + self.pace + self.passing + self.positioning + self.tackling + self.work_rate
+            self.defensive_midfielder_total = self.concentration + self.creativity + self.decisions +\
+                                              self.first_touch + self.marking + self.pace + self.passing +\
+                                              self.positioning + self.tackling + self.work_rate
         
-            self.winger_total = self.acceleration + self.creativity + self.crossing + self.dribbling + self.finishing + self.first_touch + self.off_the_ball + self.pace + self.passing + self.technique
+            self.winger_total = self.acceleration + self.creativity + self.crossing + self.dribbling + self.finishing +\
+                                self.first_touch + self.off_the_ball + self.pace + self.passing + self.technique
         
-            self.attacking_midfielder_total = self.anticipation + self.creativity + self.decisions + self.dribbling + self.first_touch + self.long_shots + self.off_the_ball + self.pace + self.passing + self.technique
+            self.attacking_midfielder_total = self.anticipation + self.creativity + self.decisions + self.dribbling +\
+                                              self.first_touch + self.long_shots + self.off_the_ball + self.pace +\
+                                              self.passing + self.technique
         
-            self.striker_total = self.acceleration + self.agility + self.anticipation + self.composure + self.decisions + self.finishing + self.first_touch + self.off_the_ball + self.pace + self.technique
+            self.striker_total = self.acceleration + self.agility + self.anticipation + self.composure +\
+                                 self.decisions + self.finishing + self.first_touch + self.off_the_ball + self.pace +\
+                                 self.technique
+
+        self.totals = [self.total, self.goalkeeper_total, self.full_back_total, self.defender_central_total,
+                       self.defensive_midfielder_total, self.winger_total, self.attacking_midfielder_total,
+                       self.striker_total]
+        self.position_totals = [self.goalkeeper_total, self.full_back_total, self.full_back_total,
+                                self.defender_central_total, self.defender_central_total,
+                                self.defensive_midfielder_total, self.winger_total, self.winger_total,
+                                self.attacking_midfielder_total, self.striker_total, self.striker_total]
+
+        self.goalkeeper_compare = self.total + self.goalkeeper_total * 4
+        self.full_back_compare = self.total + self.full_back_total * 4
+        self.defender_central_compare = self.total + self.defender_central_total * 4
+        self.defensive_midfielder_compare = self.total + self.defensive_midfielder_total * 4
+        self.winger_compare = self.total + self.winger_total * 4
+        self.attacking_midfielder_compare = self.total + self.attacking_midfielder_total * 4
+        self.striker_compare = self.total + self.striker_total * 4
+        self.compares = [self.goalkeeper_compare, self.full_back_compare, self.full_back_compare, self.defender_central_compare, self.defender_central_compare, self.defensive_midfielder_compare, self.winger_compare, self.winger_compare, self.attacking_midfielder_compare, self.striker_compare, self.striker_compare]
         
     def populate_general_from_addr(self, addr):
         
@@ -465,36 +519,36 @@ class player:
             self.attacking_midfielder_central = int(buf[self.ATTACKING_MIDFIELDER_CENTRAL_ADDR[0]:self.ATTACKING_MIDFIELDER_CENTRAL_ADDR[1]].hex(),16)
             self.striker = int(buf[self.STRIKER_ADDR[0]:self.STRIKER_ADDR[1]].hex(),16)
             
-            if self.goalkeeper > 15 :
+            if self.goalkeeper > 14 :
                 self.positions.append("goalkeeper")
             else:
-                if self.sweeper > 15 :
+                if self.sweeper > 14 :
                     self.positions.append("sweeper")
-                if self.full_back_left > 15 :
+                if self.full_back_left > 14 :
                     self.positions.append("full_back_left")
-                if self.full_back_right > 15 :
+                if self.full_back_right > 14 :
                     self.positions.append("full_back_right")
-                if self.defender_central > 15 :
+                if self.defender_central > 14 :
                     self.positions.append("defender_central")
-                if self.wing_back_left > 15 :
+                if self.wing_back_left > 14 :
                     self.positions.append("wing_back_left")
-                if self.wing_back_right > 15 :
+                if self.wing_back_right > 14 :
                     self.positions.append("wing_back_right")
-                if self.defensive_midfielder > 15 :
+                if self.defensive_midfielder > 14 :
                     self.positions.append("defensive_midfielder")
-                if self.midfielder_left > 15 :
+                if self.midfielder_left > 14 :
                     self.positions.append("midfielder_left")
-                if self.midfielder_right > 15 :
+                if self.midfielder_right > 14 :
                     self.positions.append("midfielder_right")
-                if self.midfielder_central > 15 :
+                if self.midfielder_central > 14 :
                     self.positions.append("midfielder_central")
-                if self.attacking_midfielder_left > 15 :
+                if self.attacking_midfielder_left > 14 :
                     self.positions.append("attacking_midfielder_left")
-                if self.attacking_midfielder_right > 15 :
+                if self.attacking_midfielder_right > 14 :
                     self.positions.append("attacking_midfielder_right")
-                if self.attacking_midfielder_central > 15 :
-                    self.positions.append("attacking_midifelder_central")
-                if self.striker > 15 :
+                if self.attacking_midfielder_central > 14 :
+                    self.positions.append("attacking_midfielder_central")
+                if self.striker > 14 :
                     self.positions.append("striker")
         
             # Goalkeeping Attributes
@@ -635,20 +689,27 @@ class player:
             print("get_name_point_4: Access Denied!")
             return
         
-    def decode_name(self, hex_string):
+    def decode_name(self, hex_string, version="normal"):
 
         name = ""
         start = 0
+        free = version == "second"
     
         while True:
         
             hex_segment = hex_string[start:start+4]
             if hex_segment == '0000':
-                break
+                if free:
+                    free = False
+                    name = ""
+                else:
+                    break
             hex_segment_reversed = self.reverse_hex_string(hex_segment)
             char = chr(int(hex_segment_reversed,16))
             name = name + char
             start += 4
+            if (start + 4) > len(hex_string):
+                break
         
         return name
         
@@ -682,7 +743,7 @@ class player:
     
         if self.K32.ReadProcessMemory(self.PROCESS, addr, buf, self.CLUB_BYTES, byref(s)):
             self.club_uid = int(self.reverse_hex_string(buf[self.CLUB_UID_ADDR[0]:self.CLUB_UID_ADDR[1]].hex()),16)
-            self.club_name = self.get_club_name(int(self.reverse_hex_string(buf[self.CLUB_NAME_ADDR[0]:self.CLUB_NAME_ADDR[1]].hex()),16))
+            self.club_name, self.club_name_long = self.get_club_name(int(self.reverse_hex_string(buf[self.CLUB_NAME_ADDR[0]:self.CLUB_NAME_ADDR[1]].hex()),16))
         else:
             print("populate_club_info_from_addr: Access Denied!")
             
@@ -712,8 +773,9 @@ class player:
         s = c_size_t()
         if self.K32.ReadProcessMemory(self.PROCESS, link2_addr, buf, 100, byref(s)):
             name_100 = buf.raw.hex()
-            name = self.decode_name(name_100)
-            return name
+            name_long = self.decode_name(name_100)
+            name = self.decode_name(name_100, version="second")
+            return name, name_long
         else:
             print("get_club_name_point_3: Access Denied!")
             return
@@ -725,16 +787,26 @@ class player:
         s = s + self.list_to_string(self.positions)  + "    " + self.club_name + "\n"
         s = s + str(self.total) + " " + str(self.goalkeeper_total) + " " + str(self.full_back_total) + " " + str(self.defender_central_total) + " " + str(self.defensive_midfielder_total) + " " + str(self.winger_total) + " " + str(self.attacking_midfielder_total) + " " + str(self.striker_total)
         return s
+
+    def to_string_eleven(self, position):
+        s = self.first_name + " " + self.second_name + "\t\t"
+        s = s + str(self.position_totals[position]) + "/" + str(self.total)
+        return s
+
+    def to_eleven_csv(self, position):
+        s = self.first_name + " " + self.second_name + ";"
+        s = s + str(self.position_totals[position]) + ";" + str(self.total)
+        return s
     
     def to_csv(self):
-        s = ""
-        s = s + self.first_name + " " + self.second_name + ";" + str(self.uid) + ";"
+        s = self.first_name + " " + self.second_name + ";" + str(self.uid) + ";"
         s = s + str(self.age[0]) + ";" + str(self.age[1]) + ";"
         s = s + self.list_to_string(self.positions)  + ";" + self.club_name + ";"
         s = s + str(self.total) + ";" + str(self.goalkeeper_total) + ";" + str(self.full_back_total) + ";" + str(self.defender_central_total) + ";" + str(self.defensive_midfielder_total) + ";" + str(self.winger_total) + ";" + str(self.attacking_midfielder_total) + ";" + str(self.striker_total)
         return s
-    
-    def list_to_string(self, lis):
+
+    @staticmethod
+    def list_to_string(lis):
         s = ""
         first = True
         for item in lis:
