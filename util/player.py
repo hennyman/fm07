@@ -481,7 +481,7 @@ class player:
             self.uid = int(self.reverse_hex_string(buf[self.UID_ADDR[0]:self.UID_ADDR[1]].hex()),16)
             self.first_name = self.get_name(addr + self.FIRST_NAME_ADDR[0])
             self.second_name = self.get_name(addr + self.SECOND_NAME_ADDR[0])
-            self.date_of_birth = self.get_years_and_days(buf[self.DATE_OF_BIRTH[0]:self.DATE_OF_BIRTH[1]].hex())      
+            self.date_of_birth = self.get_years_and_days(buf[self.DATE_OF_BIRTH[0]:self.DATE_OF_BIRTH[1]].hex())
             
             # International
             self.international_apps = int(buf[self.INTERNATIONAL_APPS_ADDR[0]:self.INTERNATIONAL_APPS_ADDR[1]].hex(),16)
@@ -491,6 +491,9 @@ class player:
             
             # Form
             self.morale = int(buf[self.MORALE_ADDR[0]:self.MORALE_ADDR[1]].hex(),16)
+
+            # Contract
+            self.value = round(int(self.reverse_hex_string(buf[self.VALUE_ADDR[0]:self.VALUE_ADDR[1]].hex()), 16) * 1.435)
             
         else:
             print("populate_general_from_addr: Access Denied!")
@@ -641,7 +644,6 @@ class player:
             print("populate_player_from_addr: Access Denied!")
         
         # Contract
-        self.value = None
         self.basic_wage = None
         self.contract_expires = None
         
@@ -780,11 +782,13 @@ class player:
             print("get_club_name_point_3: Access Denied!")
             return
         
-    def to_string(self):
-        s = ""
-        s = s + self.first_name + " " + self.second_name + " (" + str(self.uid) + ")    "
-        s = s + str(self.age[0]) + " years " + str(self.age[1]) + " days    "
-        s = s + self.list_to_string(self.positions)  + "    " + self.club_name + "\n"
+    def to_string(self, elevens=None):
+        s = self.first_name + " " + self.second_name
+        s = s + " (" + str(self.uid) + ")    "
+        if elevens is not None:
+            s = s + self.in_elevens(elevens) + "    "
+        s = s + str(self.age[0]) + " years " + str(self.age[1]) + " days    " + str(self.value) + "    "
+        s = s + self.list_to_string(self.positions) + "    " + self.club_name + "\n"
         s = s + str(self.total) + " " + str(self.goalkeeper_total) + " " + str(self.full_back_total) + " " + str(self.defender_central_total) + " " + str(self.defensive_midfielder_total) + " " + str(self.winger_total) + " " + str(self.attacking_midfielder_total) + " " + str(self.striker_total)
         return s
 
@@ -798,9 +802,12 @@ class player:
         s = s + str(self.position_totals[position]) + ";" + str(self.total)
         return s
     
-    def to_csv(self):
-        s = self.first_name + " " + self.second_name + ";" + str(self.uid) + ";"
-        s = s + str(self.age[0]) + ";" + str(self.age[1]) + ";"
+    def to_csv(self, elevens=None):
+        s = self.first_name + " " + self.second_name + ";"
+        s = s + str(self.uid) + ";"
+        if elevens is not None:
+            s = s + self.in_elevens(elevens) + ";"
+        s = s + str(self.age[0]) + ";" + str(self.age[1]) + ";" + str(self.value) + ";"
         s = s + self.list_to_string(self.positions)  + ";" + self.club_name + ";"
         s = s + str(self.total) + ";" + str(self.goalkeeper_total) + ";" + str(self.full_back_total) + ";" + str(self.defender_central_total) + ";" + str(self.defensive_midfielder_total) + ";" + str(self.winger_total) + ";" + str(self.attacking_midfielder_total) + ";" + str(self.striker_total)
         return s
@@ -816,3 +823,14 @@ class player:
                 s = s + " "
             s = s + str(item)
         return s
+
+    def in_elevens(self, elevens):
+        e1 = elevens[0]
+        e2 = elevens[1]
+        for p in e1:
+            if p.uid == self.uid:
+                return "1"
+        for p in e2:
+            if p.uid == self.uid:
+                return "2"
+        return " "

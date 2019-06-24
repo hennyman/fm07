@@ -1,0 +1,14 @@
+{
+	"filter": {
+		"age": {
+            "max": 33
+        },
+		"value": {
+            "max": 5000000
+        },
+		"positions": ["midfielder_left", "midfielder_right", "attacking_midfielder_left", "attacking_midfielder_right"],
+		"interested": true
+	},
+	"sort_by": "winger_compare",
+	"max_return": 20
+}

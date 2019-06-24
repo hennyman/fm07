@@ -1,0 +1,14 @@
+{
+	"filter": {
+		"age": {
+            "max": 33
+        },
+		"value": {
+            "max": 500000
+        },
+		"positions": ["goalkeeper"],
+		"interested": true
+	},
+	"sort_by": "goalkeeper_compare",
+	"max_return": 20
+}

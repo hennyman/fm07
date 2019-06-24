@@ -1,0 +1,14 @@
+{
+	"filter": {
+		"age": {
+            "max": 33
+        },
+		"value": {
+			"max": 750000
+		},
+		"positions": ["full_back_left", "full_back_right", "wing_back_left", "wing_back_right"],
+		"interested": true
+	},
+	"sort_by": "full_back_compare",
+	"max_return": 20
+}

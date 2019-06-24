@@ -46,7 +46,7 @@ class Eleven:
         self.matrix[9].sort(key=lambda x: x.total + x.striker_total * 4, reverse=True)
         self.matrix[10].sort(key=lambda x: x.total + x.striker_total * 4, reverse=True)
         
-    def get_eleven(self):
+    def get_eleven(self, suppress_print=False):
 
         self.elevens[0] = []
         self.elevens[1] = []
@@ -71,11 +71,12 @@ class Eleven:
             if is_finished:
                 break
 
-        print("Starting eleven:")
-        print(self.list_to_string(self.elevens[0]))
-        print('\n')
-        print("Second eleven:")
-        print(self.list_to_string(self.elevens[1]))
+        if not suppress_print:
+            print("Starting eleven:")
+            print(self.list_to_string(self.elevens[0]))
+            print('\n')
+            print("Second eleven:")
+            print(self.list_to_string(self.elevens[1]))
 
         return self.elevens.copy()
 
@@ -138,11 +139,13 @@ class Eleven:
         added_player = False
         
         for i in range(11):
+            added = 0
             if (self.elevens[0][i] is None) and (len(self.matrix[i]) > 0):
                 self.elevens[0][i] = self.matrix[i][0]
                 added_player = True
-            if (self.elevens[1][i] is None) and (len(self.matrix[i]) > 1):
-                self.elevens[1][i] = self.matrix[i][1]
+                added = 1
+            if (self.elevens[1][i] is None) and (len(self.matrix[i]) > added):
+                self.elevens[1][i] = self.matrix[i][added]
                 added_player = True
         
         return not added_player

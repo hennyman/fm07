@@ -1,0 +1,14 @@
+{
+	"filter": {
+		"age": {
+            "max": 33
+        },
+		"value": {
+            "max": 5000000
+        },
+		"positions": ["midfielder_central", "attacking_midfielder_central"],
+		"interested": true
+	},
+	"sort_by": "attacking_midfielder_compare",
+	"max_return": 20
+}

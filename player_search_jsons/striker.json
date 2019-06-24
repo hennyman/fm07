@@ -1,0 +1,14 @@
+{
+	"filter": {
+		"age": {
+            "max": 33
+        },
+		"value": {
+            "max": 5000000
+        },
+		"positions": ["striker"],
+		"interested": true
+	},
+	"sort_by": "striker_compare",
+	"max_return": 20
+}

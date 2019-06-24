@@ -1,0 +1,14 @@
+{
+	"filter": {
+		"age": {
+            "max": 33
+        },
+		"value": {
+            "max": 5000000
+        },
+		"positions": ["defensive_midfielder"],
+		"interested": true
+	},
+	"sort_by": "defensive_midfielder_compare",
+	"max_return": 20
+}

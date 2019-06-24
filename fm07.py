@@ -301,6 +301,13 @@ def player_search(json_data):
             filtered_players = list(filter(lambda x: x.age[0] <= age_dict["max"], filtered_players))
         if "min" in age_dict.keys():
             filtered_players = list(filter(lambda x: x.age[0] >= age_dict["min"], filtered_players))
+
+    if "value" in filter_keys:
+        value_dict = filters["value"]
+        if "max" in value_dict.keys():
+            filtered_players = list(filter(lambda x: x.value <= value_dict["max"], filtered_players))
+        if "min" in value_dict.keys():
+            filtered_players = list(filter(lambda x: x.value >= value_dict["min"], filtered_players))
             
     if "positions" in filter_keys:
         positions = filters["positions"]
@@ -323,6 +330,34 @@ def player_search(json_data):
     
     if json_data["sort_by"] == "total":
         filtered_players.sort(key=lambda x: x.total, reverse = True)
+    elif json_data["sort_by"] == "goalkeeper_total":
+        filtered_players.sort(key=lambda x: x.goalkeeper_total, reverse = True)
+    elif json_data["sort_by"] == "full_back_total":
+        filtered_players.sort(key=lambda x: x.full_back_total, reverse = True)
+    elif json_data["sort_by"] == "defender_central_total":
+        filtered_players.sort(key=lambda x: x.defender_central_total, reverse = True)
+    elif json_data["sort_by"] == "defensive_midfielder_total":
+        filtered_players.sort(key=lambda x: x.defensive_midfielder_total, reverse = True)
+    elif json_data["sort_by"] == "winger_total":
+        filtered_players.sort(key=lambda x: x.winger_total, reverse = True)
+    elif json_data["sort_by"] == "attacking_midfielder_total":
+        filtered_players.sort(key=lambda x: x.attacking_midfielder_total, reverse = True)
+    elif json_data["sort_by"] == "striker_total":
+        filtered_players.sort(key=lambda x: x.striker_total, reverse = True)
+    elif json_data["sort_by"] == "goalkeeper_compare":
+        filtered_players.sort(key=lambda x: x.goalkeeper_compare, reverse = True)
+    elif json_data["sort_by"] == "full_back_compare":
+        filtered_players.sort(key=lambda x: x.full_back_compare, reverse = True)
+    elif json_data["sort_by"] == "defender_central_compare":
+        filtered_players.sort(key=lambda x: x.defender_central_compare, reverse = True)
+    elif json_data["sort_by"] == "defensive_midfielder_compare":
+        filtered_players.sort(key=lambda x: x.defensive_midfielder_compare, reverse = True)
+    elif json_data["sort_by"] == "winger_compare":
+        filtered_players.sort(key=lambda x: x.winger_compare, reverse = True)
+    elif json_data["sort_by"] == "attacking_midfielder_compare":
+        filtered_players.sort(key=lambda x: x.attacking_midfielder_compare, reverse = True)
+    elif json_data["sort_by"] == "striker_compare":
+        filtered_players.sort(key=lambda x: x.striker_compare, reverse = True)
     
     max_return = json_data["max_return"]
     if not max_return == -1:
@@ -368,9 +403,9 @@ def get_config_club():
         return "-"
 
 
-def print_players(players):
+def print_players(players, elevens=None):
     for p in players:
-        print(p.to_string() + "\n")
+        print(p.to_string(elevens) + "\n")
     if len(players) == 0:
         print("No players found!\n")
 
@@ -379,7 +414,7 @@ def save_eleven_to_file(elevens):
     global POSITIONS
     print("")
     s_to_file = input("Do you want to save results to csv?\n> ")
-    if s_to_file == "y" or save_to_file == "Y" or save_to_file == "yes" or save_to_file == "Yes":
+    if s_to_file == "y" or s_to_file == "Y" or s_to_file == "yes" or s_to_file == "Yes":
         s_file_name = input("Enter file name\n> ")
         el1 = elevens[0]
         el2 = elevens[1]
@@ -393,6 +428,24 @@ def save_eleven_to_file(elevens):
         for p in el2:
             o = o + POSITIONS[c] + ";" + p.to_eleven_csv(c) + "\n"
             c += 1
+        try:
+            f = open(s_file_name, 'w', encoding='utf8')
+            f.write(o)
+        except Exception:
+            print("File could not be saved.")
+        finally:
+            f.close()
+
+
+def save_squad_to_file(players, elevens):
+    print("")
+    s_to_file = input("Do you want to save the squad to csv?\n> ")
+    if s_to_file == "y" or s_to_file == "Y" or s_to_file == "yes" or s_to_file == "Yes":
+        s_file_name = input("Enter file name\n> ")
+        o = "Name;UID;Eleven;Years;Days;Value;Positions;Club;Total;Goalkeeper;Full Back;Defender Central;" \
+            "Defensive Midfielder;Winger;Attacking Midfielder;Striker\n"
+        for p in players:
+            o = o + p.to_csv(elevens) + "\n"
         try:
             f = open(s_file_name, 'w', encoding='utf8')
             f.write(o)
@@ -451,20 +504,35 @@ The options are: \n\
             break
         elif identifier == "":
             filtered_players = list(filter(lambda x: x.club_name == club_name or x.club_name_long == club_name, PLAYERS))
-            print_players(filtered_players)
+            filtered_players.sort(key=lambda x: x.total, reverse=True)
+            el = Eleven()
+            el.set_players(filtered_players)
+            els = el.get_eleven(suppress_print=True)
+            print_players(filtered_players, elevens=els)
+            save_squad_to_file(filtered_players, els)
         else:
             try:
                 club_uid = int(identifier)
                 filtered_players = list(filter(lambda x: x.club_uid == club_uid, PLAYERS))
                 if len(filtered_players) > 0:
                     set_config(c_name = filtered_players[0].club_name)
-                print_players(filtered_players)
+                filtered_players.sort(key=lambda x: x.total, reverse=True)
+                el = Eleven()
+                el.set_players(filtered_players)
+                els = el.get_eleven(suppress_print=True)
+                print_players(filtered_players, elevens=els)
+                save_squad_to_file(filtered_players, els)
             except Exception as e:
                 club_name = identifier
                 filtered_players = list(filter(lambda x: x.club_name == club_name or x.club_name_long == club_name, PLAYERS))
                 if len(filtered_players) > 0:
                     set_config(c_name = filtered_players[0].club_name)
-                print_players(filtered_players)
+                filtered_players.sort(key=lambda x: x.total, reverse=True)
+                el = Eleven()
+                el.set_players(filtered_players)
+                els = el.get_eleven(suppress_print=True)
+                print_players(filtered_players, elevens=els)
+                save_squad_to_file(filtered_players, els)
     elif function == "3":
         club_name = get_config_club()
         identifier = input("Enter club name or UID " + "(default: " + club_name + ")" + "\n> ")
@@ -476,6 +544,7 @@ The options are: \n\
                 break
             filtered_players = list(filter(lambda x: x.club_name == club_name or x.club_name_long == club_name, PLAYERS))
             filtered_players = list(filter(lambda x: position in x.positions, filtered_players))
+            filtered_players.sort(key=lambda x: x.total, reverse=True)
             print_players(filtered_players)
         else:
             position = input("Enter position \n> ")
@@ -487,6 +556,7 @@ The options are: \n\
                 filtered_players = list(filter(lambda x: position in x.positions, filtered_players))
                 if len(filtered_players) > 0:
                     set_config(c_name = filtered_players[0].club_name)
+                filtered_players.sort(key=lambda x: x.total, reverse=True)
                 print_players(filtered_players)
             except Exception as e:
                 club_name = identifier
@@ -494,6 +564,7 @@ The options are: \n\
                 filtered_players = list(filter(lambda x: position in x.positions, filtered_players))
                 if len(filtered_players) > 0:
                     set_config(c_name = filtered_players[0].club_name)
+                filtered_players.sort(key=lambda x: x.total, reverse=True)
                 print_players(filtered_players)
     elif function == "4":
         club_name = get_config_club()
@@ -538,6 +609,8 @@ The options are: \n\
         file_name = input("Enter file name of json defining search \n> ")
         if file_name == "exit" or file_name == "Exit":
             break
+        if not file_name[-5:] == ".json":
+            file_name = file_name + ".json"
         path_file_name = PLAYER_SEARCH_JSONS_PATH + file_name
         try: 
             with open(path_file_name) as json_file:  
