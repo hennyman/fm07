@@ -4,7 +4,7 @@
             "max": 33
         },
 		"value": {
-            "max": 5000000
+            "max": 200000
         },
 		"positions": ["midfielder_central", "attacking_midfielder_central"],
 		"interested": true

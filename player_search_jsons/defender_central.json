@@ -3,9 +3,6 @@
 		"age": {
             "max": 33
         },
-		"value": {
-            "max": 500000
-        },
 		"positions": ["sweeper", "defender_central"],
 		"interested": true
 	},

@@ -1,0 +1,44 @@
+Nicky Weaver                  GK                  142/82                        
+Roman Weidenfeller            GK                  142/86                        
+Craig Pearce                  GK                  118/56                        
+Micah Richards                D RC, DM            140/78    152/78    144/80    
+Ibrahim Kargbo                SW, D RLC, DM       140/80    140/80    132/70    
+Nedum Onuoha                  D RC                130/60    128/58              
+Samu Lönnström                D R                 138/70                        
+Michael Connor                D RC                129/70    132/64              
+Stephen Jordan                D/WB L              128/72                        
+Stuart Harris                 D/WB/M L            105/30    107/38              
+Mathieu Delpierre             D C                 147/84                        
+Richard Dunne                 D C                 149/86                        
+Gabriel Paletta               D C                 146/86                        
+Anton Everitt                 D C                 139/68                        
+Steve Jones                   D C                 109/42                        
+Stijn Schaars                 DM, M LC            132/72    141/78    143/80    
+Tom Soares                    M RC                142/76    136/72    121/60    
+Mike Davies                   M RLC               87/30     98/20     91/18     
+Michael Johnson               M C                 108/44    137/70              
+Andy Royle                    M C                 96/34     90/10               
+Kieran Barry                  M C                 75/12     92/24               
+David Bentley                 AM R                148/88                        
+Roberto Hilbert               AM R                135/78                        
+Juan Carlos Menseguez         AM R                142/78                        
+Kelvin Etuhu                  AM R                136/74                        
+Ismael Aissati                AM LC               150/82    143/80              
+Alan O'Brien                  AM L                132/64                        
+Ishmael Miller                AM L, ST            133/72    137/84              
+Michael Barnes                AM L                117/52                        
+Steve McDonald                AM L                96/30                         
+Victor Moses                  AM/F C              123/60    129/74              
+James Rhodes                  AM/F C              99/28     107/40              
+Lewis Wotton                  AM C                101/28                        
+Nick Lowe                     AM/F C              100/34    110/50              
+Terry McLeod                  AM/F C              88/12     93/28 
+Mario Gomez                   ST                  126/64                        
+Ian Daly                      ST                  121/64                        
+Billy Sharp                   ST                  128/72                        
+Giorgos Samaras               ST                  143/88                        
+Daniel Sturridge              ST                  140/88                        
+Jeff Harris                   ST                  105/38                        
+Mark Darby                    F C                 106/40                        
+Richard Campbell              ST                  100/28                        
+

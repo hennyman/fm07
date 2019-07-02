@@ -491,8 +491,8 @@ The options are: \n\
                 else:
                     print("UID not found\n")
             except Exception as e:
-                names = identifier.split(" ")
-                filtered_players = list(filter(lambda x: x.first_name == names[0] and x.second_name == names[1], PLAYERS))
+                name = identifier
+                filtered_players = list(filter(lambda x: x.first_name + " " + x.second_name == name, PLAYERS))
                 for p in filtered_players:
                     print(p.to_string() + "\n")
                 if len(filtered_players) == 0:
@@ -631,7 +631,7 @@ The options are: \n\
                 for p in filtered_players:
                     output = output + p.to_csv() + "\n"
             
-                file = open(save_file_name,'w') 
+                file = open(save_file_name, 'w', encoding='utf8')
                 file.write(output) 
                 file.close()
                 

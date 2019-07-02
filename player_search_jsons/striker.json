@@ -3,9 +3,6 @@
 		"age": {
             "max": 33
         },
-		"value": {
-            "max": 5000000
-        },
 		"positions": ["striker"],
 		"interested": true
 	},

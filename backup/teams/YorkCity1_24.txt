@@ -1,0 +1,39 @@
+John Andersson                GK                  155/428                       
+Colin Wilkinson               GK                  131/396                       
+Dominic Butler                GK                  116/301                       
+Wayne Ellis                   GK                  122/346                       
+Sean Challinor                D/WB/M R            155/496   141/496             
+Gavin Sinclair                D/WB R              144/511                       
+Stephen Williamson            D/WB R              142/458                       
+Martin Hansen                 D/WB L              146/493                       
+Nicky Holm                    D/WB L              144/486                       
+Nick Welch                    D/WB L              128/452                       
+Urko Murillo                  D LC                141/474   149/474             
+Matthew Simmonds              D C                 152/456                       
+Tom Hillier                   D C                 156/441                       
+David Shipperley              D C, DM             147/519   154/519             
+Steinarr Sveinbjörnsson       D C                 149/474                       
+Peter Coppinger               D C, DM             149/510   158/510             
+John Wark                     D C                 147/437                       
+Anthony Osbourne              DM, AM RC           145/507   153/507   163/507   
+Darren Lake                   DM                  138/450                       
+Sam Burke                     DM, AM RC           134/486   151/486   140/486   
+Steven Kay                    AM RL               152/465                       
+Pietro Cavaliere              AM R                143/459                       
+Carlos Leguizamón             AM RC, ST           145/428   121/428   120/428   
+Kevin Howarth                 AM RC               147/480   141/480             
+Néstor Pereyra                AM L                143/471                       
+Jimmy Webster                 AM L                127/444                       
+Ángel Galán                   AM LC, ST           148/449   136/449   139/449   
+Carlos Rivera                 AM LC               147/421   136/421             
+José María Martínez           AM LC               135/465   127/465             
+Oldrich Petrik                AM LC               142/479   144/479             
+Sonny Cresswell               AM L                136/419                       
+Damien Mainwaring             AM C                146/507                       
+Jussi Haapaniemi              AM/F C              136/463   138/463             
+Kevin Taylor                  ST                  161/507                       
+Eduardo Bengoetxea            ST                  150/509                       
+Dominic Griffiths             ST                  149/481                       
+Shaun King                    ST                  144/481                       
+Duarte                        ST                  142/461                       
+Iztok Veladzic                ST                  138/431                       

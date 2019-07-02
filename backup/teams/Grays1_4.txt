@@ -1,0 +1,30 @@
+Zak Jones                     GK                  126/58
+Wade Street                   GK                  123/60 
+Bernard Ryan                  GK                  112/44                        
+Dean Smith                    D R                 111/44                        
+Antonio Cooper                D RLC               93/30     81/8                
+Andrew Sambrook               D RC                110/40    101/34              
+Ben Starosta                  D R, AM R           104/40    111/40              
+Neil Ashton                   D L                 108/48                        
+Mark Wright                   D LC                110/48    110/40              
+Scott Jamieson                D/AM L              115/44    115/46              
+Oliver Cruse                  D C                 121/60                        
+Adam Roarty                   D C                 131/70                        
+Gary Lake                     D C                 126/62                        
+Graham Bentham                D C                 92/22                         
+Mike Edwards                  D C, DM             122/64    121/58
+Stuart Thurgood               DM                  129/64                        
+Joey Lawrence                 DM                  102/38                        
+Mark Park                     DM                  94/36                         
+Ray Parlour                   M RC                136/78    114/60    125/66    
+Robert Sinclair               AM RC               121/52    114/48              
+Dennis Oli                    AM R, ST            102/36    107/42              
+Alan Kearney                  M L                 119/54                        
+Billy Dennehy                 AM L                116/52                        
+Jason Townsend                AM L                97/18                         
+Ricky Nicholls                AM C                117/48                        
+Luke Murphy                   AM C                122/52                        
+Calvin Andrew                 ST                  123/64                        
+Tom Craddock                  ST                  121/64                        
+Timo Furuholm                 ST                  117/54                        
+John Turner                   ST                  108/48

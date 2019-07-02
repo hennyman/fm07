@@ -1,0 +1,41 @@
+Arto Vikman                   GK                  110/324                       
+Sami Kuusela                  GK                  111/346                       
+Janne Henriksson              GK                  122/334                       
+Juho Kottila                  GK                  98/319                        
+Miki Knudsen                  D/WB R              120/408                       
+Kalle Sorja                   D RC                123/363   134/363             
+Jens Portin                   D RL                115/393                       
+Jari Sara                     D RL, M C           111/382   112/382   110/382   
+Samu Ahola                    D/WB R              121/390                       
+Jonas Portin                  D LC                116/357   123/357             
+Olli-Pekka Aalto              D/WB L              117/383                       
+Markku Lehtinen               D C                 134/405                       
+Olli Vilppola                 D C, DM             128/424   131/424             
+Henri Myntti                  D C, DM             135/388   121/388             
+Aleksandar Mehmedi            D C, DM             105/386   123/386             
+Lars Hansson                  D C                 131/366                       
+Pekka Koponen                 D C                 119/336                       
+Petri Sirviö                  D C                 119/361                       
+Toni Toivanen                 DM                  128/424                       
+Jarkko Vesapuisto             DM                  126/399                       
+Fredrik Lundqvist             M C                 112/394   118/394             
+Mika Mäkitalo                 AM RLC              136/414   130/414             
+Rusu Bogdan-nicolae           WB/AM R             130/429                       
+Henri Toivomäki               AM RL               96/293                        
+Jonas Emet                    AM RLC              100/332   98/332              
+Toni Junnila                  AM RLC              114/347   111/347             
+Jari Hemmilä                  AM R                103/326                       
+Ari Hämäläinen                AM L                131/381                       
+Jaakko Lepola                 AM LC               119/409   119/409             
+Henrik Sarkis                 AM L                125/413                       
+Alimamy Jalloh                AM L                123/376                       
+Timo Korhonen                 AM L                111/360                       
+Niclas Kalatsev               AM/F C              125/425   119/425             
+Eero Korte                    AM C                111/390                       
+Mikko Bergström               AM C                115/366                       
+Teemu Pukki                   ST                  129/366                       
+Jussi Aalto                   ST                  124/365                       
+Jari Strand                   ST                  105/352                       
+Kenneth Peltonen              ST                  118/365                       
+Marko Aalto                   ST                  101/334                       
+Vladislav Dirgin              ST                  114/368                       

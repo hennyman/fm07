@@ -1,0 +1,38 @@
+Zak Jones                     GK                  123/54
+Tommy Forecast                GK                  123/62                        
+Aaron Martin                  GK                  80/12                         
+Bernard Ryan                  GK                  99/32                         
+Dean Smith                    D R                 108/38                        
+Andy Bell                     D R                 91/24                         
+Luke Jones                    D RC                103/34    114/42              
+Andrew Sambrook               D RC                110/44    100/34              
+Antonio Cooper                D RLC               94/26     83/8                
+Ben Starosta                  D R, AM R           104/40    111/40              
+Neil Ashton                   D L                 84/26                         
+Chris Cunningham              D L                 93/28                         
+Mark Wright                   D LC                106/42    106/32              
+Scott Jamieson                D/AM L              113/40    115/48 
+Joe O'Cearuill                D C                 131/68                        
+Oliver Cruse                  D C                 115/52                        
+Adam Roarty                   D C                 119/54                        
+Jamie Gill                    D C                 87/10                         
+Richard Sims                  D C                 78/14                         
+Stuart Thurgood               DM                  128/64                        
+Sam Wallace                   M R                 59/0
+James Lucketti                AM R                84/16                         
+Ray Parlour                   M RC                114/56    123/64              
+Dennis Oli                    AM R, ST            101/34    108/42              
+Billy Dennehy                 AM L                110/34                        
+Jason Townsend                AM L                99/26                         
+Alex Rhodes                   AM L, ST            112/44    111/50              
+Andrew Fisk                   M C                 107/36    112/38              
+Sergio Torres                 AM C                107/30                                  
+Erno Rosenberg                AM C                105/34                        
+Calvin Andrew                 ST                  122/64                        
+Tom Craddock                  ST                  121/64                        
+John Turner                   ST                  107/46            
+              
+             
+     
+              
+               

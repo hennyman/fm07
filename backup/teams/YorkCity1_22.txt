@@ -1,0 +1,39 @@
+John Andersson                GK                  150/419                       
+Colin Wilkinson               GK                  128/388                       
+Gary Morris                   GK                  120/352                       
+Tomi Koivunen                 GK                  131/376                       
+Torstein Lægreid              GK                  137/387 
+Jack Hudson                   D R                 139/469                       
+Gavin Sinclair                D/WB R              144/506                       
+Jan Person                    D/WB R              128/403                       
+Nicky Holm                    D/WB L              142/480                       
+Ryan Campbell                 D/WB L              132/458                       
+Johnny Holmes                 D/WB L              133/391                       
+Josu Gabilondo                D/WB L              113/381                       
+Matthew Simmonds              D C                 152/456                       
+Tom Hillier                   D C                 156/440                       
+David Shipperley              D C, DM             147/519   154/519             
+John Wark                     D C                 147/436                       
+David Burton                  D C, DM             144/482   153/482             
+Steinarr Sveinbjörnsson       D C                 146/467                       
+Jerson Kilic                  D C                 134/387                       
+Páll Bergsson                 DM                  127/454                       
+Anthony Osbourne              DM, AM RC           138/485   146/485   156/485   
+Sam Burke                     DM, AM RC           129/464   143/464   135/464   
+Víctor Guadalupe              AM RC, F C          155/483   151/483   144/483   
+Tsenko Angelov                AM R                152/498                       
+Euan Law                      AM RC, F C          140/470   141/470   136/470   
+Andy Rowe                     AM RL               138/453                       
+Kevin Howarth                 AM RC               137/442   132/442             
+Guðmundur Ástvaldsson         AM R                146/503                       
+Leandro Milano                M R                 117/318                       
+Néstor Pereyra                AM L                146/476                       
+Oldrich Petrik                AM LC               140/476   143/476             
+Ally Hamilton                 AM L                132/433                       
+Damien Mainwaring             AM C                146/507                       
+John Owens                    AM C                137/429                       
+Kevin Taylor                  ST                  159/499                       
+Dominic Griffiths             ST                  149/480                       
+Shaun King                    ST                  144/479                       
+Bob Rigby                     ST                  108/319                       
+Marius Haug                   ST                  139/446                       

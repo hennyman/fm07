@@ -3,9 +3,6 @@
 		"age": {
             "max": 33
         },
-		"value": {
-            "max": 500000
-        },
 		"positions": ["goalkeeper"],
 		"interested": true
 	},

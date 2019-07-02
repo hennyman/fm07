@@ -1,0 +1,42 @@
+Joris Delle                   GK                  144/409                       
+Roman Weidenfeller            GK                  145/412                       
+Nicky Weaver                  GK                  152/407                       
+Vegard Rød                    GK                  134/329
+Micah Richards                D RC, DM            134/465   147/465   140/465   
+Jordan Collins                D R                 149/414                       
+Jeffrey Peters                D/WB RL             110/376                       
+Sebastian Ryttov              D RC                115/365   125/365             
+Marino Lobé                   D LC, M L           153/499   158/499   122/499   
+Damien Gamiette               SW, D LC            137/458   153/458             
+Joe Mattock                   D LC, WB L          140/481   137/481             
+Marcus Williams               D/WB/M L            145/428   125/428             
+Eduard Díaz Martínez          D/WB L              103/375                       
+Ralph Bakker                  D C                 154/437                       
+Adam Roarty                   D C                 150/420                       
+Anton Everitt                 D C                 145/418                       
+Moisés Gómez Gómez            D C                 143/413                       
+Paul Jewell                   SW, D C             118/352                       
+Fábio Rochemback              DM, AM C            138/501   147/501             
+Fernando Gago                 DM                  154/489                       
+Peter Luccin                  DM                  152/498                       
+Juan González Ruiz            DM                  104/359                       
+Ricardo Quaresma              AM RL               162/448                       
+David Bentley                 AM R                151/463                       
+Simon Leposa                  AM R                130/418                       
+József Németh                 AM L                157/485                       
+Alan O'Brien                  AM L                137/420                       
+Ishmael Miller                AM L, ST            137/462   146/462   147/462   
+Robert Jones                  AM LC               124/403   121/403             
+Stevie Molloy                 AM LC               132/451   134/451             
+Sebastian Giovinco            AM/F C              159/522   151/522   150/522   
+Darren Taylor                 AM/F C              111/361   103/361   102/361   
+Glenn Duffy                   AM C                117/384                       
+Kjetil Olsen                  AM/F C              122/421   116/421   109/421   
+Michael Murphy                AM/F C              125/416   121/416   108/416   
+Andrea Cosner                 ST                  156/531                       
+Steve Bailey                  ST                  143/451   153/451             
+Dag Alexander Olsen           F C                 154/470   144/470             
+Giorgos Samaras               ST                  153/444   155/444             
+Ewerthon                      F C                 155/448   137/448             
+Daniel Sturridge              ST                  139/441   130/441             
+Ian McKoy                     ST                  124/373   115/373

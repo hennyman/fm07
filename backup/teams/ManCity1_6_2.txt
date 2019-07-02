@@ -1,0 +1,40 @@
+Nicky Weaver                  GK                  149/404                       
+Roman Weidenfeller            GK                  143/411                       
+Craig Pearce                  GK                  105/306                       
+Micah Richards                D RC, DM            135/467   140/467   133/467   
+Ibrahim Kargbo                SW, D RLC, DM       131/448   136/448   122/448   
+Nedum Onuoha                  D RC                128/402   127/402             
+Samu Lönnström                D R                 129/436                       
+Michael Connor                D RC                126/398   124/398             
+Stephen Jordan                D/WB L              114/405                       
+Stuart Harris                 D/WB/M L            99/406    110/406             
+Mathieu Delpierre             D C                 148/429                       
+Richard Dunne                 D C                 142/405                       
+Gabriel Paletta               D C                 138/432                       
+Anton Everitt                 D C                 137/382                       
+Stijn Schaars                 DM, M LC            139/481   138/481   143/481   
+Tom Soares                    M RC                124/453   128/453   126/453   
+Abou Diaby                    M C                 136/488   141/488             
+Michael Johnson               M C                 134/435   143/435             
+Theo Janssen                  M LC                124/429   120/429   127/429                    
+David Bentley                 AM R                146/467                       
+Roberto Hilbert               AM R                128/433                       
+Juan Carlos Menseguez         AM R                141/428                       
+Kelvin Etuhu                  AM R, F C           138/473   132/473             
+Ismael Aissati                AM LC               146/462   152/462             
+Alan O'Brien                  AM L                125/390                       
+Ishmael Miller                AM L, ST            134/463   146/463             
+Michael Barnes                AM L                113/350                       
+Steve McDonald                AM L                82/320                        
+Victor Moses                  AM/F C              127/431   126/431             
+Lewis Wotton                  AM C                93/324                        
+Nick Lowe                     AM/F C              112/371   106/371             
+Mario Gomez                   ST                  130/434                       
+Ian Daly                      ST                  125/429                       
+Billy Sharp                   ST                  137/399                       
+Giorgos Samaras               ST                  149/442                       
+Daniel Sturridge              ST                  147/448                       
+Jeff Harris                   ST                  106/350                       
+Mark Darby                    F C                 110/342                       
+Richard Campbell              ST                  102/333                       
+

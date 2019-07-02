@@ -1,0 +1,43 @@
+Douglas                       GK                  160/454                       
+Heiko Röttger                 GK                  141/426                       
+José Manuel Reina             GK                  158/422                       
+Tony Hook                     GK                  109/337                       
+Loïc Abenzoar                 D RC                147/475   158/475             
+Giovanni Izzo                 D/WB R              161/493                       
+Marino Lobé                   D LC, M L           154/501   157/501   122/501   
+Francisco Javier García Ramos D/WB/M L            138/479   130/479             
+Joe Mattock                   D LC, WB L          133/463   130/463             
+Detlef Wolter                 D L                 128/412                       
+John Burke                    D LC, M L           129/442   131/442   106/442   
+Ion Niculescu                 D C                 165/462                       
+Daniel Agger                  D C                 160/471                       
+Léo Roux                      D C                 158/475                       
+Calum Allen                   D C                 125/377                       
+Carlos Seco                   D C, DM             129/440   123/440             
+Javier Mascherano             DM                  169/517                       
+Xabi Alonso                   DM                  168/511                       
+Abel Alcántara                DM                  126/435                       
+Norberto Arias                M C                 119/389   129/389             
+Jimmy Wilson                  AM RC               158/513   149/513             
+Samuel                        AM RC, ST           163/488   156/488   137/488   
+Pablo Arévalo                 M RC                151/548   160/548   166/548   
+António                       AM RC, F C          170/509   157/509   162/509   
+Xavier Richard                AM R, ST            154/477   163/477             
+Nani                          AM RLC              159/465   152/465             
+Gonzalo De la Rosa            AM R                137/439                       
+József Németh                 AM L                160/496                       
+Alessandro Ruffini            AM L                136/382                       
+Unai Susaeta                  AM L                145/431
+Gonzalo Higuaín               AM/F C              151/501   156/501             
+Simone Cerea                  AM C                165/513                       
+Marino Reale                  AM/F C              148/476   145/476             
+Andy Hardman                  AM/F C              132/447   131/447   138/447   
+Mohammed de Geus              AM/F C              111/388   115/388   118/388   
+Tom Joyce                     AM/F C              125/440   128/440   129/440   
+Marcel Kok                    ST                  155/470   154/470             
+Milan Pavlovic                ST                  155/515   159/515             
+Asier Uriarte                 ST                  155/487                       
+Adrian Harper                 ST                  133/389                       
+Graham Saunders               ST                  113/349                       
+John Cross                    ST                  126/372                       
+Stuart Norris                 ST                  136/427

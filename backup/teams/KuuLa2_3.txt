@@ -1,0 +1,30 @@
+Teuvo Moilanen                GK                  135/370                       
+Antti Kuismala                GK                  114/327                       
+Jens Portin                   D RL                130/399                       
+Patrik Turunen                D RLC               111/400   125/400             
+Fabiano                       D/WB L              129/445                       
+Niklas Moisander              D LC                117/431   129/431             
+Toni Kallio                   D LC, M L           120/405   131/405   93/405    
+Pontus Öberg                  D C                 141/378                       
+Ali Koljonen                  D C, DM, AM C       116/411   126/411   116/411   
+Jukka Hakkala                 D C, DM             134/379   113/379             
+Janne Räsänen                 D C                 124/357                       
+Timo Kanerva                  D C                 116/323                       
+Yusuf Mahdi                   D C                 122/348                       
+Fredrik Nordback              DM                  124/432                       
+Mika Mäkitalo                 AM RLC              131/415   123/415             
+Jonas Emet                    AM RLC              128/429   131/429             
+Pablo Gomez-Marttila          AM RC, F C          122/393   126/393   110/393   
+Tamas Gruborovics             AM RL               114/377                       
+Nastja Ceh                    AM LC               146/461   149/461             
+Roberto Massaro               AM L                132/397                       
+Tobias Niemi                  AM L                113/350                       
+Stefan Zarkovic               AM C                137/418                       
+Toni Roschier                 AM C                127/376                       
+John Keister                  ST                  146/389                       
+Derlis Florentin              ST                  150/425                       
+Gilberto                      F C                 140/364                       
+Pele Koljonen                 ST                  123/392                       
+Teemu Pukki                   ST                  114/323                       
+Samuli Kaivonurmi             ST                  116/394                       
+Tommi Siekkinen               ST                  121/366                       

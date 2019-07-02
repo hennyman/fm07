@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23a07600-98ba-43f0-addd-b273644d8fd5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/18.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/fm07.py" beforeDir="false" afterPath="$PROJECT_DIR$/fm07.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oviedo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oviedo_elevens.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oviedo_squad.csv" beforeDir="false" afterPath="$PROJECT_DIR$/oviedo_squad.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_search_jsons/18.json" beforeDir="false" afterPath="$PROJECT_DIR$/player_search_jsons/18.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_search_jsons/attacking_midfielder.json" beforeDir="false" afterPath="$PROJECT_DIR$/player_search_jsons/attacking_midfielder.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_search_jsons/defender_central.json" beforeDir="false" afterPath="$PROJECT_DIR$/player_search_jsons/defender_central.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_search_jsons/full_back.json" beforeDir="false" afterPath="$PROJECT_DIR$/player_search_jsons/full_back.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_search_jsons/goalkeeper.json" beforeDir="false" afterPath="$PROJECT_DIR$/player_search_jsons/goalkeeper.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_search_jsons/striker.json" beforeDir="false" afterPath="$PROJECT_DIR$/player_search_jsons/striker.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player_search_jsons/winger.json" beforeDir="false" afterPath="$PROJECT_DIR$/player_search_jsons/winger.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortlists/interested.slf" beforeDir="false" afterPath="$PROJECT_DIR$/shortlists/interested.slf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortlists/known.slf" beforeDir="false" afterPath="$PROJECT_DIR$/shortlists/known.slf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/eleven.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/eleven.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/player.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fm07.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="345" column="76" selection-start-line="345" selection-start-column="76" selection-end-line="345" selection-end-column="76" />
+            <state relative-caret-position="375">
+              <caret line="636" column="16" lean-forward="true" selection-start-line="636" selection-start-column="16" selection-end-line="636" selection-end-column="16" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -27,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/util/player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-495">
-              <caret line="495" column="121" selection-start-line="495" selection-start-column="121" selection-end-line="495" selection-end-column="121" />
+            <state relative-caret-position="51">
+              <caret line="626" column="45" lean-forward="true" selection-start-line="626" selection-start-column="45" selection-end-line="626" selection-end-column="45" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -42,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util/eleven.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-558">
-              <caret line="78" column="12" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="12" />
+            <state relative-caret-position="-212">
+              <caret line="159" column="27" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -56,8 +66,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/util/eleven.py" />
         <option value="$PROJECT_DIR$/util/player.py" />
+        <option value="$PROJECT_DIR$/util/eleven.py" />
         <option value="$PROJECT_DIR$/fm07.py" />
       </list>
     </option>
@@ -73,16 +83,17 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
     <option name="width" value="1040" />
-    <option name="height" value="734" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -99,7 +110,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -178,7 +188,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.80763793" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.9335219" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.437058" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -206,27 +216,27 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/util/eleven.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-558">
-          <caret line="78" column="12" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-495">
-          <caret line="495" column="121" selection-start-line="495" selection-start-column="121" selection-end-line="495" selection-end-column="121" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-212">
+          <caret line="159" column="27" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fm07.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="345" column="76" selection-start-line="345" selection-start-column="76" selection-end-line="345" selection-end-column="76" />
+        <state relative-caret-position="375">
+          <caret line="636" column="16" lean-forward="true" selection-start-line="636" selection-start-column="16" selection-end-line="636" selection-end-column="16" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="626" column="45" lean-forward="true" selection-start-line="626" selection-start-column="45" selection-end-line="626" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>

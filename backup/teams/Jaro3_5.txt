@@ -1,0 +1,30 @@
+Lucas Hradecky                GK                  103/323                       
+Arto Vikman                   GK                  112/326                       
+Janne Henriksson              GK                  122/334                       
+Kalle Rönkkö                  GK                  122/325                       
+Jari Sara                     D RL, M C           111/379   112/379   110/379   
+Jens Portin                   D RL                111/380                       
+Kalle Sorja                   D RC                122/363   132/363             
+Samu Ahola                    D/WB R              119/380                       
+Jonas Portin                  D LC                116/353   124/353             
+Olli Vilppola                 D C, DM             128/419   131/419             
+Pekka Koponen                 D C                 117/337                       
+Henri Myntti                  D C, DM             137/389   121/389             
+Toni Toivanen                 DM                  121/396                       
+Jarkko Vesapuisto             DM                  126/398                       
+Fredrik Lundqvist             M C                 114/400   118/400             
+Mika Ojala                    AM R, ST            118/379   109/379             
+Jonas Emet                    AM RLC              124/393   119/393             
+Henri Toivomäki               AM RL               108/334                       
+Toni Junnila                  AM RLC              123/383   120/383             
+Ari Hämäläinen                AM L                131/378                       
+Jaakko Lepola                 AM LC               119/407   119/407             
+Alimamy Jalloh                AM L                123/373                       
+Niclas Kalatsev               AM/F C              124/418   118/418             
+Pele Koljonen                 ST                  115/403                       
+Teemu Pukki                   ST                  126/361                       
+Kenneth Peltonen              ST                  117/357                       
+Jussi Aalto                   ST                  125/366                       
+Babatunde Wusu                ST                  119/354                       
+Marko Aalto                   ST                  101/333                       
+Vladislav Dirgin              ST                  110/357                       

@@ -1,11 +1,10 @@
 {
 	"filter": {
 		"age": {
-            "max": 17
+            "max": 33
         },
-		"positions": ["all_outfield"],
 		"interested": true
 	},
 	"sort_by": "total",
-	"max_return": 100
+	"max_return": 20
 }

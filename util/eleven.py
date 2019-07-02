@@ -156,7 +156,8 @@ class Eleven:
             return j
 
         # better position I
-        position_values = [p.goalkeeper, p.full_back_left, p.full_back_right, p.defender_central, p.defender_central,
+        position_values = [p.goalkeeper, max(p.full_back_left, p.wing_back_left),
+                           max(p.full_back_right, p.wing_back_right), p.defender_central, p.defender_central,
                            p.defensive_midfielder, max(p.midfielder_left, p.attacking_midfielder_left),
                            max(p.midfielder_right, p.attacking_midfielder_right), p.attacking_midfielder_central,
                            p.striker, p.striker]
