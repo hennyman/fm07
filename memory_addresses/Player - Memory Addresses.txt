@@ -40,6 +40,8 @@ Decimal			Hex				Description
 307				133				Under 21 goals
 
 328 - 332		148 - 14b		Memory address of club
+
+				16c - 16f		Memory address of contract link
 				
 420 - 423		1a4 - 1a7		Memory address to personality
 

@@ -171,6 +171,7 @@ def load_players():
             
     for p in PLAYERS:
         p.set_age(CURRENT_DATE)
+        p.set_contract_status(CURRENT_DATE)
         
     player_uid_list = []
     for p in PLAYERS:
@@ -320,6 +321,17 @@ def player_search(json_data):
     if "interested" in filter_keys:
         interested = filters["interested"]
         filtered_players = list(filter(lambda x: x.is_interested == interested, filtered_players))
+
+    if "contract_status" in filter_keys:
+        contract_status = filters["contract_status"]
+        filtered_players = list(filter(lambda x: x.contract_status == contract_status, filtered_players))
+
+    if "transfer_status" in filter_keys:
+        transfer_status = filters["transfer_status"]
+        if transfer_status == "transfer":
+            filtered_players = list(filter(lambda x: x.transfer_status in [1, 3, 65, 8, 10, 72, 5], filtered_players))
+        if transfer_status == "loan":
+            filtered_players = list(filter(lambda x: x.transfer_status in [3, 6, 10, 18], filtered_players))
         
     if "free" in filter_keys:
         free = filters["free"]
@@ -330,6 +342,8 @@ def player_search(json_data):
     
     if json_data["sort_by"] == "total":
         filtered_players.sort(key=lambda x: x.total, reverse = True)
+    elif json_data["sort_by"] == "value":
+        filtered_players.sort(key=lambda x: x.value, reverse = True)
     elif json_data["sort_by"] == "goalkeeper_total":
         filtered_players.sort(key=lambda x: x.goalkeeper_total, reverse = True)
     elif json_data["sort_by"] == "full_back_total":
@@ -634,6 +648,6 @@ The options are: \n\
                 file = open(save_file_name, 'w', encoding='utf8')
                 file.write(output) 
                 file.close()
-                
+
         except Exception as e:
             print(e)

@@ -1,0 +1,11 @@
+{
+	"filter": {
+		"age": {
+            "max": 33
+        },
+		"interested": true,
+		"transfer_status": "transfer"
+	},
+	"sort_by": "value",
+	"max_return": 20
+}

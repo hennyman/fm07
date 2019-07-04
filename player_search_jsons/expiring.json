@@ -1,0 +1,11 @@
+{
+	"filter": {
+		"age": {
+            "max": 33
+        },
+		"interested": true,
+		"contract_status": "Expiring"
+	},
+	"sort_by": "value",
+	"max_return": 20
+}

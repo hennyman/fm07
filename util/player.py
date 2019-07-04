@@ -2,6 +2,7 @@ from ctypes import *
 from ctypes.wintypes import *
 import numpy as np
 
+
 class player:
     
     PROCESS_VM_READ = 0x0010
@@ -19,10 +20,12 @@ class player:
     PLAYER_GENERAL_BYTES = 484
     PLAYER_ATTRIBUTE_BYTES = 108
     CLUB_BYTES = 336
+    CONTRACT_BYTES = 112
     
     MAIN_ADDR = None
     ATTR_ADDR = 0xb4,0xb8
     CLUB_ADDR = 0x148,0x14c
+    CONTRACT_LINK_ADDR = 0x16c,0x170
     
     FIRST_NAME_ADDR = 0x100,0x104
     SECOND_NAME_ADDR = 0x104,0x108
@@ -38,8 +41,6 @@ class player:
     UNDER_21_GOALS_ADDR = 0x133,0x134
     
     VALUE_ADDR = 0x24,0x28
-    BASIC_WAGE_ADDR = None # Unknown
-    CONTRACT_EXPIRES_ADDR = None # Unknown
     CONDITION_ADDR = None # Unknown
     FORM_ADDR = None # Unknown
     MORALE_ADDR = 0x48,0x49
@@ -133,6 +134,7 @@ class player:
         self.age = None # (years, days)
         self.is_interested = False
         self.is_known = False
+        self.value = None
         
         # International
         self.international_apps = None
@@ -141,9 +143,25 @@ class player:
         self.under_21_goals = None
         
         # Contract
-        self.value = None
+        # Transfer Statuses
+        # 0 = Unattached?
+        # 1 = Transfer listed, not listed for loan
+        # 3 = Transfer listed, listed for loan
+        # 65 = Transfer listed, not available for loan
+        # 4 = Not transfer listed, not listed for loan
+        # 6 = Not transfer listed, listed for loan
+        # 68 = Not transfer listed, not available for loan
+        # 8 = Transfer listed by request, not listed for loan
+        # 10 = Transfer listed by request, listed for loan
+        # 72 = Transfer listed by request, not available for loan
+        # 16 = Not for sale, not listed for loan
+        # 18 = Not for sale, listed for loan
+        # 80 = Not for sale, not available for loan
+        # Many more...
+        self.transfer_status = None
         self.basic_wage = None
-        self.contract_expires = None
+        self.contract_expires = None # (years, days)
+        self.contract_status = None
         
         # Form
         self.condition = None
@@ -493,7 +511,7 @@ class player:
             self.morale = int(buf[self.MORALE_ADDR[0]:self.MORALE_ADDR[1]].hex(),16)
 
             # Contract
-            self.value = round(int(self.reverse_hex_string(buf[self.VALUE_ADDR[0]:self.VALUE_ADDR[1]].hex()), 16) * 1.435)
+            self.value = round(int(self.reverse_hex_string(buf[self.VALUE_ADDR[0]:self.VALUE_ADDR[1]].hex()), 16) * 1.45)
             
         else:
             print("populate_general_from_addr: Access Denied!")
@@ -639,13 +657,13 @@ class player:
             
             club_addr = int(self.reverse_hex_string(buf[self.CLUB_ADDR[0]:self.CLUB_ADDR[1]].hex()),16)
             self.populate_club_info_from_addr(club_addr)
+
+            contract_link_addr = int(self.reverse_hex_string
+                                     (buf[self.CONTRACT_LINK_ADDR[0]:self.CONTRACT_LINK_ADDR[1]].hex()), 16)
+            self.populate_contract_from_addr(contract_link_addr)
             
         else:
             print("populate_player_from_addr: Access Denied!")
-        
-        # Contract
-        self.basic_wage = None
-        self.contract_expires = None
         
         # Form
         self.condition = None
@@ -719,7 +737,7 @@ class player:
         
         days = int(self.reverse_hex_string(hex_string[0:4]), 16)
         years = int(self.reverse_hex_string(hex_string[4:8]), 16)
-        return (years, days)
+        return years, days
     
     def set_age(self, current_date):
         
@@ -834,3 +852,46 @@ class player:
             if p.uid == self.uid:
                 return "2"
         return " "
+
+    def populate_contract_from_addr(self, link_addr):
+
+        if link_addr == 0:
+            self.transfer_status = 0
+            self.basic_wage = 0
+            self.contract_expires = None
+            return
+
+        buf = create_string_buffer(4)
+        s = c_size_t()
+        if self.K32.ReadProcessMemory(self.PROCESS, link_addr, buf, 4, byref(s)):
+            self.reverse_array(buf)
+            contract_addr = int(buf.raw.hex(), 16)
+        else:
+            print("populate_contract_from_addr_1: Access Denied!")
+            return
+
+        buf = create_string_buffer(self.CONTRACT_BYTES)
+        s = c_size_t()
+
+        if self.K32.ReadProcessMemory(self.PROCESS, contract_addr, buf, self.CONTRACT_BYTES, byref(s)):
+            self.transfer_status = int(buf[0x27].hex(), 16)
+            self.basic_wage = round(int(self.reverse_hex_string(buf[0x10:0x14].hex()), 16) * 1.45)
+            self.contract_expires = self.get_years_and_days(buf[0x20:0x24].hex())
+        else:
+            print("populate_contract_from_addr_2: Access Denied")
+
+    def set_contract_status(self, current_date):
+        if self.contract_expires is None:
+            self.contract_status = "Unattached"
+            return
+        years = self.contract_expires[0] - current_date[0]
+        days = self.contract_expires[1] - current_date[1]
+        if years == 0:
+            self.contract_status = "Expiring"
+            if days < 0:
+                self.contract_status = "Expired"
+            return
+        if years < 0:
+            self.contract_status = "Expired"
+            return
+        self.contract_status = "Contracted"
