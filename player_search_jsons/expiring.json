@@ -6,6 +6,6 @@
 		"interested": true,
 		"contract_status": "Expiring"
 	},
-	"sort_by": "value",
-	"max_return": 20
+	"sort_by": "total",
+	"max_return": 300
 }

@@ -886,12 +886,13 @@ class player:
             return
         years = self.contract_expires[0] - current_date[0]
         days = self.contract_expires[1] - current_date[1]
-        if years == 0:
+        if years < 0:
+            self.contract_status = "Expired"
+        elif years == 0:
             self.contract_status = "Expiring"
             if days < 0:
                 self.contract_status = "Expired"
-            return
-        if years < 0:
-            self.contract_status = "Expired"
-            return
-        self.contract_status = "Contracted"
+        elif years == 1 and days < 0:
+            self.contract_status = "Expiring"
+        else:
+            self.contract_status = "Contracted"

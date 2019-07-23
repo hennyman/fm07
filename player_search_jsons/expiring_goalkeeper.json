@@ -1,11 +1,12 @@
 {
 	"filter": {
 		"age": {
-            "max": 17
+            "max": 33
         },
 		"positions": ["goalkeeper"],
-		"interested": true
+		"interested": true,
+		"contract_status": "Expiring"
 	},
 	"sort_by": "goalkeeper_compare",
-	"max_return": 20
+	"max_return": 10
 }
