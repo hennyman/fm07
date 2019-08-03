@@ -116,7 +116,7 @@ class player:
     LEFT_FOOT_ADDR = 0x4d,0x4e
     RIGHT_FOOT_ADDR = 0x4e,0x4f
     
-    ATTR_CONVERTER = np.zeros(100)
+    ATTR_CONVERTER = np.zeros(97)
     
     def __init__(self, process_id):
         
@@ -307,8 +307,10 @@ class player:
             return -1
         
     def attribute_100_20(self, int_value):
-        if int_value > 101:
-            return 1 # TODO: Seems like the value that should be 1 - 100 can be negative, assume that in such a case the shown value is 1. 101 should -> 20
+        if 129 > int_value > 97:
+            return 20 # Seems like values can exceed 100, too high -> 1
+        if int_value > 128:
+            return 1
         return self.ATTR_CONVERTER[int_value - 1]
     
     def generate_converter(self):
@@ -409,11 +411,7 @@ class player:
         self.ATTR_CONVERTER[94] = 19
         self.ATTR_CONVERTER[95] = 19
         self.ATTR_CONVERTER[96] = 19
-        self.ATTR_CONVERTER[97] = 20
-        self.ATTR_CONVERTER[98] = 20
-        self.ATTR_CONVERTER[99] = 20
-        self.ATTR_CONVERTER[100] = 20
-        
+
     def calculate_totals(self):
         if self.goalkeeper >=15:
             
