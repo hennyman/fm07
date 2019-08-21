@@ -435,12 +435,18 @@ def save_eleven_to_file(elevens):
         o = ""
         c = 0
         for p in el1:
-            o = o + POSITIONS[c] + ";" + p.to_eleven_csv(c) + "\n"
+            if p is None:
+                o = o + POSITIONS[c] + ";" + "\n"
+            else:
+                o = o + POSITIONS[c] + ";" + p.to_eleven_csv(c) + "\n"
             c += 1
         o = o + "\n\n\n"
         c = 0
         for p in el2:
-            o = o + POSITIONS[c] + ";" + p.to_eleven_csv(c) + "\n"
+            if p is None:
+                o = o + POSITIONS[c] + ";" + "\n"
+            else:
+                o = o + POSITIONS[c] + ";" + p.to_eleven_csv(c) + "\n"
             c += 1
         try:
             f = open(s_file_name, 'w', encoding='utf8')

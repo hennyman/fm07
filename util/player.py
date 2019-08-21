@@ -845,9 +845,13 @@ class player:
         e1 = elevens[0]
         e2 = elevens[1]
         for p in e1:
+            if p is None:
+                continue
             if p.uid == self.uid:
                 return "1"
         for p in e2:
+            if p is None:
+                continue
             if p.uid == self.uid:
                 return "2"
         return " "
