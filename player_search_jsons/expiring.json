@@ -7,5 +7,5 @@
 		"contract_status": "Expiring"
 	},
 	"sort_by": "total",
-	"max_return": 300
+	"max_return": 1000
 }
